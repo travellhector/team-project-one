@@ -1,0 +1,30 @@
+#book {
+    width: 50%;
+    background: greenyellow;
+    float: left;
+    height: 1000px;
+    background-image: url("../images/press.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#movie {
+    width: 50%;
+    background: turquoise;
+    float: left;
+    height: 1000px;
+    background-image: url("../images/reel.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#search {
+    width: 100%;
+    background: black;
+    height: 75px;
+}
