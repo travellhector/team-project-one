@@ -11,6 +11,25 @@
 
 }
 
+h1{
+    color: white;
+    float: left;
+}
+
+header {
+    width: 100%;
+    background: black;
+    height: 75px;
+}
+
+
+.info{
+    width: 80%;
+    height: 200px;
+    background-color: white;
+    margin: 25px auto;
+}
+
 #movie {
     width: 50%;
     background: turquoise;
@@ -23,8 +42,21 @@
     background-size: cover;
 }
 
-#search {
-    width: 100%;
-    background: black;
-    height: 75px;
+.poster{
+    background: white;
+    width: 350px;
+    height: 500px;
+    margin: 25px auto;
+}
+
+.rating{
+    width: 125px;
+    height: 70px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+#search{
+    float: right;
+    padding: 25px 50px;
 }
