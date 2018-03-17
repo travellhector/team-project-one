@@ -1,3 +1,7 @@
+body {
+    font-family: 'Eczar', serif;
+}
+
 #book {
     width: 50%;
     background: greenyellow;
@@ -42,7 +46,72 @@ header {
     background-size: cover;
 }
 
-.poster{
+#search {
+    width: 100%;
+    background: black;
+    height: 75px;
+}
+
+#search{
+    float: right;
+    padding: 25px 50px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 25%;
+    top: 34%;
+    width: 50%;
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    color: white;
+    background-color: black;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid rgb(190, 190, 190);
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: rgb(190, 190, 190);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myBtn {
+    background-color: black;
+    font-family: 'Eczar', serif;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.poster {
     background: white;
     width: 350px;
     height: 500px;
@@ -56,7 +125,3 @@ header {
     margin: 0 auto;
 }
 
-#search{
-    float: right;
-    padding: 25px 50px;
-}
