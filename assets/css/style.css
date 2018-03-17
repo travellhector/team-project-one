@@ -4,7 +4,7 @@ body {
 
 #book {
     width: 50%;
-    background: greenyellow;
+    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/press.jpg");
@@ -15,15 +15,31 @@ body {
 
 }
 
+.clearfix::after {    
+	clear: both;
+	content: "";
+	display: table;
+     
+}
+
+.links{
+    height: 100px;
+    margin: 0 auto 10px;
+    background-color: white;
+    width: 75%;
+}
+
 h1{
     color: white;
     float: left;
+    margin: 10px 0 0 50px;
+    font-size: 50px;
 }
 
 header {
     width: 100%;
     background: black;
-    height: 75px;
+    height: 75px
 }
 
 
@@ -36,7 +52,7 @@ header {
 
 #movie {
     width: 50%;
-    background: turquoise;
+    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/reel2.jpg");
@@ -46,15 +62,10 @@ header {
     background-size: cover;
 }
 
-#search {
-    width: 100%;
-    background: black;
-    height: 75px;
-}
-
 #search{
     float: right;
-    padding: 25px 50px;
+    padding: 25px 50px 25px 0;
+    width: 317px;
 }
 
 /* The Modal (background) */
@@ -125,3 +136,65 @@ header {
     margin: 0 auto;
 }
 
+#search-input{
+    width: 250px;
+}
+
+@media screen and (max-width: 750px) {
+    
+    #book {
+        width: 100%;
+        background: ;
+        float: none;
+        height: 1000px;
+        background-image: url("../images/press.jpg");
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 25px;
+    
+    }
+
+    h1{
+        color: white;
+        float: none;
+        text-align: center;
+        font-size: 50px;
+    }
+
+    header {
+        width: 100%;
+        background: black;
+        height: 100px;
+        padding: 10px 0;
+    }
+    
+
+    #movie {
+        width: 100%;
+        background: ;
+        float: none;
+        height: 1000px;
+        background-image: url("../images/reel2.jpg");
+        background-position:center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 25px;
+    }
+
+    .poster {
+        background: white;
+        width: 350px;
+        height: 500px;
+        margin: 0 auto 25px;
+    }
+
+    #search{
+        float: none;
+        padding: 0;
+        margin: 5px auto 0;
+    }
+  
+}
