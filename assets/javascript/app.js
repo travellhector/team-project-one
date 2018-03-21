@@ -54,6 +54,11 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 console.log($rating.html());
                 console.log($publisher.html());
                 console.log($author.html());
+           
+                $("#author").text("Name of the author :"+$author.html());
+                $("#publisher").text("Publisher :"+$publisher.html());
+                $("#book-rating").text("Publisher :"+$rating.html());
+
                 });
         });
 
