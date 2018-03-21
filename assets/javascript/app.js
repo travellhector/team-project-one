@@ -20,6 +20,43 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
       $("#movieRelease").text("Release Date: " + response.results[0].release_date);
     });
 
+    console.log(movie);
+
+        //Establing the urls
+        var corsProxy = "https://cors-anywhere.herokuapp.com/";
+        var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
+        var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
+        var queryURL = corsProxy + apiUrl;
+        var bookIDURL = corsProxy+xmlURL;
+        // Getting the widget for the reviews 
+        // Getting the URL for the link to the goodreads bookpage
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).then(function(response) {
+            console.log(response);
+        // console.log(response.reviews_widget);
+            $("#book-review").append(response.reviews_widget);
+            var bookPage = ($("#gr_header a").attr("href"));
+            console.log(bookPage);
+            //Parsing the xml to get the book rating, author name and publisher
+            $.ajax({
+                url: bookIDURL,
+                method: 'GET'
+                }).then(function(response) {
+                //var xmlDoc =$.parseXML(response);
+                console.log(response);
+                // console.log(xmlDoc);
+                var $xml=$(response);
+                var $rating = $xml.find("average_rating");
+                var $author = $xml.find("author name");
+                var $publisher =$xml.find("publisher");
+                console.log($rating.html());
+                console.log($publisher.html());
+                console.log($author.html());
+                });
+        });
+
 });
 
 
