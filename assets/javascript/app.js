@@ -18,6 +18,31 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
       $("#synopsis").text(response.results[0].overview);
 
       $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+
+      var movieID = (response.results[0].id);
+      console.log (movieID);
+
+      var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+
+        $.ajax({
+        url: creditsURL,
+        method: "GET"
+        }).then(function(response) {
+        console.log(response);
+
+        var director = response.crew.find(function(item) {
+            return item.job === "Director"
+        });
+
+        $("#movieDir").text("Director: " + director.name);
+
+        var screenplay = response.crew.find(function(item) {
+            return item.job === "Screenplay"
+        });
+
+        $("#movieScreen").text("Screenplay: " + screenplay.name);
+        
+        });
     });
 
     console.log(movie);
@@ -55,8 +80,8 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 console.log($publisher.html());
                 console.log($author.html());
            
-                $("#author").text("Name of the author :"+$author.html());
-                $("#publisher").text("Publisher :"+$publisher.html());
+                $("#author").text("Author: "+$author.html());
+                $("#publisher").text("Publisher: "+$publisher.html());
                 $("#book-rating").text($rating.html());
 
                 });

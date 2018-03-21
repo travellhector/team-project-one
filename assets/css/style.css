@@ -4,7 +4,6 @@ body {
 
 #book {
     width: 50%;
-    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/press.jpg");
@@ -52,7 +51,6 @@ header {
 
 #movie {
     width: 50%;
-    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/reel2.jpg");
@@ -144,7 +142,6 @@ header {
     
     #book {
         width: 100%;
-        background: ;
         float: none;
         height: 1000px;
         background-image: url("../images/press.jpg");
@@ -173,7 +170,6 @@ header {
 
     #movie {
         width: 100%;
-        background: ;
         float: none;
         height: 1000px;
         background-image: url("../images/reel2.jpg");
@@ -201,7 +197,6 @@ header {
     #to-movie{
         background-image: url("../images/tomovie.png");
         width: 146px;
-        background-color: ;
         height: 75px;
         position: fixed;
         top: 340px;
@@ -214,7 +209,6 @@ header {
     #to-book{
         background-image: url("../images/tobook.png");
         width: 146px;
-        background-color: ;
         height: 75px;
         position: fixed;
         top: 340px;
