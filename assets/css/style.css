@@ -188,7 +188,7 @@ header {
         background: white;
         width: 350px;
         height: 500px;
-        margin: 0 auto 25px;
+        margin: 0 0 25px 25px;
     }
 
     #search{
@@ -196,5 +196,31 @@ header {
         padding: 0;
         margin: 5px auto 0;
     }
+
+
+    #to-movie{
+        background-image: url("../images/tomovie.png");
+        width: 146px;
+        background-color: ;
+        height: 75px;
+        position: fixed;
+        top: 340px;
+        right: 5px;
+    }
+    #to-movie:hover {
+        background-image: url("../images/tomovie-hover.png");
+    }
   
+    #to-book{
+        background-image: url("../images/tobook.png");
+        width: 146px;
+        background-color: ;
+        height: 75px;
+        position: fixed;
+        top: 340px;
+        left: 5px;
+    }
+    #to-book:hover {
+        background-image: url("../images/tobook-hover.png");
+    }
 }
