@@ -114,3 +114,31 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+// functon for th buttons to move between the to sections with 750px -540px
+var app = {
+    showingBook: true,
+    showingMovie: false
+};
+
+function showMovie() {
+    app.showingMovie = true;
+    app.showingBook = false;
+    $("#movie").show();
+    $("#book").hide();
+}
+
+function showBook() {
+    app.showingMovie = false;
+    app.showingBook = true;
+    $("#movie").hide();
+    $("#book").show();
+}
+
+function onButtonClick() {
+    if(app.showingBook) { showMovie(); }
+    else { showBook(); }
+}
+
+$(".toggleDisplay").on("click", onButtonClick);
