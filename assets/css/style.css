@@ -178,6 +178,7 @@ header {
         background-repeat: no-repeat;
         background-size: cover;
         padding-top: 25px;
+        display: none;
     }
 
     .poster-b, .poster-m {
@@ -189,6 +190,11 @@ header {
 
     .info-b, .rating-b, .links-b, .poster-b {
         margin: 0 0 25px 25px;
+    }
+
+    .info-b, .rating-b, .info-m, .rating-m, .links-b, .links-m {
+        width: 65%;
+        min-width: 350px;
     }
 
     .info-m, .rating-m, .links-m, .poster-m {
@@ -226,4 +232,14 @@ header {
     #to-book:hover {
         background-image: url("../images/tobook-hover.png");
     }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    #to-book, #to-movie{
+        display: none;
+    }
+
+
 }
