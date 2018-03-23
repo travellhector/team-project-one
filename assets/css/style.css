@@ -4,7 +4,6 @@ body {
 
 #book {
     width: 50%;
-    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/press.jpg");
@@ -22,7 +21,7 @@ body {
      
 }
 
-.links{
+.links-b, .links-m{
     height: 100px;
     margin: 0 auto 10px;
     background-color: white;
@@ -43,7 +42,7 @@ header {
 }
 
 
-.info{
+.info-b, .info-m{
     width: 80%;
     height: 200px;
     background-color: white;
@@ -52,7 +51,6 @@ header {
 
 #movie {
     width: 50%;
-    background: ;
     float: left;
     height: 1000px;
     background-image: url("../images/reel2.jpg");
@@ -122,14 +120,14 @@ header {
     bottom: 0;
 }
 
-.poster {
+.poster-b, .poster-m {
     background: white;
     width: 350px;
     height: 500px;
     margin: 25px auto;
 }
 
-.rating{
+.rating-b, .rating-m{
     width: 125px;
     height: 70px;
     background-color: white;
@@ -144,7 +142,6 @@ header {
     
     #book {
         width: 100%;
-        background: ;
         float: none;
         height: 1000px;
         background-image: url("../images/press.jpg");
@@ -173,7 +170,6 @@ header {
 
     #movie {
         width: 100%;
-        background: ;
         float: none;
         height: 1000px;
         background-image: url("../images/reel2.jpg");
@@ -184,11 +180,20 @@ header {
         padding-top: 25px;
     }
 
-    .poster {
+    .poster-b, .poster-m {
         background: white;
         width: 350px;
         height: 500px;
+
+    }
+
+    .info-b, .rating-b, .links-b, .poster-b {
         margin: 0 0 25px 25px;
+    }
+
+    .info-m, .rating-m, .links-m, .poster-m {
+        margin: 0 25px 25px auto;
+
     }
 
     #search{
@@ -201,7 +206,6 @@ header {
     #to-movie{
         background-image: url("../images/tomovie.png");
         width: 146px;
-        background-color: ;
         height: 75px;
         position: fixed;
         top: 340px;
@@ -214,7 +218,6 @@ header {
     #to-book{
         background-image: url("../images/tobook.png");
         width: 146px;
-        background-color: ;
         height: 75px;
         position: fixed;
         top: 340px;
