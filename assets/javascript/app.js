@@ -75,15 +75,29 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 var $author = $xml.find("author name");
                 var $publisher =$xml.find("publisher");
                 var $bookPoster = $xml.find("image_url");
+                var $bookPosterLink = $bookPoster.html();
+                var $publication_year = $xml.find("publication_year");
+                var $publication_month =$xml.find("publication_month");
+                var $publication_day =$xml.find("publication_day");
+                var publication_date =$publication_month.html()+"-"+$publication_day.html()+"-"+$publication_year.html();
+                var $isbn = $xml.find("isbn");
                 console.log($rating.html());
                 console.log($publisher.html());
                 console.log($author.html());
-                console.log($bookPoster.html());
+                console.log($bookPosterLink);
+                console.log(publication_date);
+                var isbn = ($isbn.html());
+                console.log(isbn);
+                var num =isbn.slice(9,19)
+                console.log(num);
+              console.log("http://covers.openlibrary.org/b/isbn/"+num+"-L.jpg")
+
            
                 $("#author").text("Author: "+$author.html());
                 $("#publisher").text("Publisher: "+$publisher.html());
                 $("#book-rating").text($rating.html());
-                $("#bookPoster").attr("src", $bookPoster);
+                $("#bookPoster").attr("src", $bookPosterLink);
+                $('#publish_date').text("Publication Date :"+publication_date);
                
                 });
         });
