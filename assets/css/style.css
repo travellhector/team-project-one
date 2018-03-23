@@ -21,7 +21,7 @@ body {
      
 }
 
-.links{
+.links-b, .links-m{
     height: 100px;
     margin: 0 auto 10px;
     background-color: white;
@@ -42,7 +42,7 @@ header {
 }
 
 
-.info{
+.info-b, .info-m{
     width: 80%;
     height: 200px;
     background-color: white;
@@ -120,14 +120,14 @@ header {
     bottom: 0;
 }
 
-.poster {
+.poster-b, .poster-m {
     background: white;
     width: 350px;
     height: 500px;
     margin: 25px auto;
 }
 
-.rating{
+.rating-b, .rating-m{
     width: 125px;
     height: 70px;
     background-color: white;
@@ -180,11 +180,20 @@ header {
         padding-top: 25px;
     }
 
-    .poster {
+    .poster-b, .poster-m {
         background: white;
         width: 350px;
         height: 500px;
+
+    }
+
+    .info-b, .rating-b, .links-b, .poster-b {
         margin: 0 0 25px 25px;
+    }
+
+    .info-m, .rating-m, .links-m, .poster-m {
+        margin: 0 25px 25px auto;
+
     }
 
     #search{
