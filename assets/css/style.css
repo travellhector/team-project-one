@@ -22,23 +22,23 @@ body {
 }
 
 .links-b, .links-m{
-    height: 100px;
-    margin: 0 auto 10px;
-    background-color: white;
-    width: 75%;
+    height: 50;
+    /* margin: 0 auto 10px; */
+    background-color: black;
+    width: 50px;
 }
 
 h1{
     color: white;
-    float: left;
-    margin: 10px 0 0 50px;
+    /* float: left; */
+    /* margin: 10px 0 0 50px; */
     font-size: 50px;
 }
 
-header {
-    width: 100%;
+header, .header{
+    /* width: 100%; */
     background: black;
-    height: 75px
+    /* height: 75px */
 }
 
 
@@ -61,9 +61,9 @@ header {
 }
 
 #search{
-    float: right;
+    /* float: right;
     padding: 25px 50px 25px 0;
-    width: 317px;
+    width: 317px; */
 }
 
 .parsley-errors-list filled {
@@ -129,10 +129,10 @@ header {
 }
 
 .poster-b, .poster-m {
-    background: white;
+    background: #00000094;
     width: 350px;
-    height: 500px;
     margin: 25px auto;
+    border-radius: 10px;
 }
 
 .rating-b, .rating-m{
