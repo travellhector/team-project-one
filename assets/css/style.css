@@ -14,6 +14,10 @@ body {
 
 }
 
+#bookPoster{
+    float: left;
+}
+
 .clearfix::after {    
 	clear: both;
 	content: "";
@@ -21,11 +25,20 @@ body {
      
 }
 
-.links-b, .links-m{
-    height: 50;
-    /* margin: 0 auto 10px; */
-    background-color: black;
-    width: 50px;
+
+/* The Close Button */
+.close {
+    color: rgb(190, 190, 190);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 h1{
@@ -41,7 +54,6 @@ header, .header{
     /* height: 75px */
 }
 
-
 .info-b, .info-m{
     width: 80%;
     height: 200px;
@@ -49,21 +61,11 @@ header, .header{
     margin: 25px auto;
 }
 
-#movie {
-    width: 50%;
-    float: left;
-    height: 1000px;
-    background-image: url("../images/reel2.jpg");
-    background-position:center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#search{
-    /* float: right;
-    padding: 25px 50px 25px 0;
-    width: 317px; */
+.links-b, .links-m{
+    height: 50px;
+    /* margin: 0 auto 10px; */
+    background-color: black;
+    width: 50px;
 }
 
 /* The Modal (background) */
@@ -88,19 +90,15 @@ header, .header{
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
-.close {
-    color: rgb(190, 190, 190);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
+#movie {
+    width: 50%;
+    float: left;
+    height: 1000px;
+    background-image: url("../images/reel2.jpg");
+    background-position:center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #myBtn {
@@ -132,6 +130,13 @@ header, .header{
     height: 70px;
     background-color: white;
     margin: 0 auto;
+}
+
+
+#search{
+    /* float: right;
+    padding: 25px 50px 25px 0;
+    width: 317px; */
 }
 
 #search-input{
