@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
 
         <style>
             #book-review{
@@ -22,9 +23,9 @@
             <header>
                 <h1>Title</h1>
                 <div class="" id="search">
-                    <form role="form">                            
-                        <button id="search-btn" type="submit">Search</button>
-                        <input id="search-input" type="text" placeholder="type your title" >
+                    <form id="search-form" data-validate="parsley">                            
+                        <input id="search-btn" type="submit" class="btn-btn-success" value="Search">
+                        <input id="search-input" type="text" placeholder="enter a movie or book title" data-parsley-required data-parsley-maxlength="20">
                     </form>
                 </div>
  
