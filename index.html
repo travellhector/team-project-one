@@ -6,6 +6,10 @@
         </title>
         
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
@@ -16,10 +20,10 @@
                 display:none;
             }
             
-            #bookPoster{
+            /* #bookPoster{
                 height:400px;
                 width:300px;
-            }
+            } */
 
         </style>
     </head>
@@ -27,7 +31,30 @@
 
         <div id="container">
             <!-- serch field input and button -->
-            <header>
+            <div class="container header clearfix">
+                <div class="row">
+                    <div class="col-3">
+                        <h1>Title</h1>
+                    </div>
+
+                    <!-- <div class="col" id="search">
+                        <form role="form">                            
+                            <button class="btn btn-light" id="search-btn" type="submit">Search</button>
+                            <input id="search-input" type="text" placeholder="type your title" >
+                        </form>
+                    </div> -->
+
+                    <form role="form" class="form-inline col-5" id="search">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <input type="text" class="form-control" id="search-input" placeholder="type your title">
+                        </div>
+                        <button class="btn btn-light mb-2" id="search-btn" type="submit">Search</button>
+                    </form>
+                    
+                </div>
+
+            </div>
+            <!-- <header>
                 <h1>Title</h1>
                 <div class="" id="search">
                     <form role="form">                            
@@ -36,11 +63,13 @@
                     </form>
                 </div>
  
-            </header>
+            </header> -->
         
             <div class="clearfix" id="book">
                 <div class = "poster-b">
-                        <img id="bookPoster" src="">
+                        <img id="bookPoster" src="" width="200px" height="300px">
+
+                        <div class="links-b">
 
                 </div>
 
@@ -54,8 +83,7 @@
                         <h3 id ="publish_date"></h3>
 
                 </div>
-                <div class="links-b">
-
+                
                 </div>
                 
                 <!-- <a href=""><div id="to-movie"></div></a> -->
@@ -64,7 +92,7 @@
             </div>
             <div class="clearfix" id="movie">
                     <div class="poster-m">
-                        <img id="moviePoster" src="">
+                        <img id="moviePoster" src="" width="200px" height="300px">
                     </div>
                     <div class="rating-m">
     
