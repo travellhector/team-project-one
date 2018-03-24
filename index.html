@@ -11,13 +11,21 @@
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
 
+
         <style>
             #book-review{
                 display:none;
             }
+            
+            #bookPoster{
+                height:400px;
+                width:300px;
+            }
+
         </style>
     </head>
     <body>
+
         <div id="container">
             <!-- serch field input and button -->
             <header>
@@ -33,6 +41,7 @@
         
             <div class="clearfix" id="book">
                 <div class = "poster-b">
+                        <img id="bookPoster" src="">
 
                 </div>
 
@@ -43,14 +52,16 @@
                 <div class="info-b">
                         <h3 id="author"></h3>
                         <h3 id="publisher"></h3>
+                        <h3 id ="publish_date"></h3>
 
                 </div>
                 <div class="links-b">
-
+                    <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
+                    <a href=""><img id="goodreads" src="assets/images/goodreads.jpg" height="50px" width="50px" alt="Goodreads"></a>
                 </div>
                 
                 <!-- <a href=""><div id="to-movie"></div></a> -->
-                <div id="to-movie"></div>
+                <div id="to-movie" class="toggleDisplay"></div>
 
             </div>
             <div class="clearfix" id="movie">
@@ -58,7 +69,7 @@
                         <img id="moviePoster" src="">
                     </div>
                     <div class="rating-m">
-    
+                        <h3 id="movie-rating"></h3>
                     </div>
                     <div class="info-m">
                         <h3 id="movieRelease"></h3>
@@ -67,10 +78,10 @@
     
                     </div>
                     <div class="links-m">
-                        
+                        <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                     </div>
 
-                    <div id="to-book"></div>
+                    <div id="to-book" class="toggleDisplay"></div>
             </div>
         </div>
 
