@@ -24,6 +24,14 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
       var movieID = (response.results[0].id);
       console.log (movieID);
 
+      console.log(movie);
+
+      //Getting the streaming site 
+
+      var movieStream = "https://www.fan.tv/movies/"+movieID;
+      console.log(movieStream);
+      $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+
       var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
         $.ajax({
@@ -47,7 +55,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         });
     });
 
-    console.log(movie);
+    
 
     //Getting the movie rating 
 
@@ -57,7 +65,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         url: omdbURL,
         method: "GET"
       }).then(function(response) {
-        console.log(response);
+        //console.log(response);
          $("#movie-rating").text(response.imdbRating);
 
     });
@@ -78,7 +86,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         // console.log(response.reviews_widget);
             $("#book-review").append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
-            console.log(bookPage);
+            //console.log(bookPage);
             //Parsing the xml to get the book rating, author name and publisher
             $.ajax({
                 url: bookIDURL,
@@ -117,7 +125,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 $('#publish_date').text("Publication Date :"+publication_date);
                $('#amazon').parent().attr("href",amazon).attr("target","_blank")
                $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
-            
+               
 
                 });
         });
