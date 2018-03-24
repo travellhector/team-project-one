@@ -13,7 +13,7 @@
 
 
         <style>
-            #book-review{
+           #book-review{
                 display:none;
             }
             
@@ -42,8 +42,22 @@
             <div class="clearfix" id="book">
                 <div class = "poster-b">
                         <img id="bookPoster" src="">
-
                 </div>
+
+                
+        <!-- Trigger/Open The Book review Modal -->
+<button id="myBRBtn">Read Book reviews</button>
+
+<!-- The Modal -->
+<div id="modal-book-review" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="BRclose">&times;</span>
+    <p id="bookreviews"></p>
+  </div>
+
+</div>
 
                 <div class="rating-b">
                   <h3 id="book-rating"></h3>
@@ -79,6 +93,7 @@
                     </div>
                     <div class="links-m">
                         <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
+                        
                     </div>
 
                     <div id="to-book" class="toggleDisplay"></div>
@@ -103,6 +118,7 @@
   </div>
 
 </div>
+
 
         <script type="text/javascript" src="assets/javascript/app.js"></script>
     </body>
