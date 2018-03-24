@@ -33,6 +33,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
       url: queryURL,
       method: "GET"
     }).then(function(response) {
+        console.log(response);
       var poster = (response.results[0].poster_path);
       
       $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
@@ -50,7 +51,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         url: creditsURL,
         method: "GET"
         }).then(function(response) {
-        console.log(response);
+        
 
         var director = response.crew.find(function(item) {
             return item.job === "Director"
@@ -80,8 +81,8 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         $.ajax({
             url: queryURL,
             method: 'GET'
-        }).then(function(response) {
-           // console.log(response);
+        }).done(function(response) {
+           console.log(response);
         // console.log(response.reviews_widget);
             $("#book-review").append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
@@ -90,7 +91,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
             $.ajax({
                 url: bookIDURL,
                 method: 'GET'
-                }).then(function(response) {
+                }).done(function(response) {
                 //var xmlDoc =$.parseXML(response);
                 //console.log(response);
                 // console.log(xmlDoc);
@@ -106,7 +107,11 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 $("#publisher").text("Publisher: "+$publisher.html());
                 $("#book-rating").text($rating.html());
 
+                }).fail(function(error){
+                    console.log("not");
                 });
+        }).fail(function(error){
+            console.log ("NOPE");
         });
 
         $(document).ajaxError(function(){
