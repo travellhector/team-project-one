@@ -20,7 +20,6 @@ $(document).ready(function() {
 
 // Search Button
 
-
 //$("#search-btn").on("click", function(event) {
 function search(event) {
 
@@ -40,6 +39,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         }
         var poster = (response.results[0].poster_path);
       
+
         $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
 
         $("#synopsis").text(response.results[0].overview);
@@ -53,9 +53,11 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
 
         //Getting the streaming site 
 
+
         var movieStream = "https://www.fan.tv/movies/"+movieID;
         console.log(movieStream);
         $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+
 
         var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
@@ -87,8 +89,6 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         console.log ("movie not found");
     });
 
-    
-
     //Getting the movie rating 
 
     var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
@@ -99,9 +99,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
       }).then(function(response) {
         //console.log(response);
          $("#movie-rating").text(response.imdbRating);
-
     });
-
         //Establing the book urls
         var corsProxy = "https://cors-anywhere.herokuapp.com/";
         var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
@@ -113,10 +111,13 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         $.ajax({
             url: queryURL,
             method: 'GET'
+
         }).done(function(response) {
            console.log(response);
         // console.log(response.reviews_widget);
+
             $("#book-review").append(response.reviews_widget);
+            $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
             //console.log(bookPage);
             //Parsing the xml to get the book rating, author name and publisher
@@ -124,9 +125,10 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 url: bookIDURL,
                 method: 'GET'
                 }).then(function(response) {
-                //var xmlDoc =$.parseXML(response);
-                //console.log(response);
-                // console.log(xmlDoc);
+
+
+               console.log(response);
+
                 var $xml=$(response);
                 var $rating = $xml.find("average_rating");
                 var $author = $xml.find("author name");
@@ -158,40 +160,47 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 $("#bookPoster").attr("src", $bookPosterLink);
                 $('#publish_date').text("Publication Date :"+publication_date);
                $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
-               
+               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")               
 
                 })
         }).fail(function(error){
             console.log ("book not found");
+
         });
 
 //});
     };
 
-
-
-
-
-
-// Modal
+// Synopsis Modal
 var modal = document.getElementById('myModal');
-
 var btn = document.getElementById("myBtn");
-
 var span = document.getElementsByClassName("close")[0];
-
 btn.onclick = function() {
     modal.style.display = "block";
 }
-
 span.onclick = function() {
     modal.style.display = "none";
 }
-
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+}
+
+
+// Book Reviews Modal
+var bookReviewsModal = document.getElementById('modal-book-review');
+var BRbtn = document.getElementById("myBRBtn");
+var BRspan = document.getElementsByClassName("BRclose")[0];
+BRbtn.onclick = function() {
+    bookReviewsModal.style.display = "block";
+}
+BRspan.onclick = function() {
+    bookReviewsModal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == bookReviewsModal) {
+        bookReviewsModal.style.display = "none";
     }
 }
 
@@ -222,3 +231,4 @@ function onButtonClick() {
 }
 
 $(".toggleDisplay").on("click", onButtonClick);
+

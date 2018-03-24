@@ -14,6 +14,10 @@ body {
 
 }
 
+#bookPoster{
+    float: left;
+}
+
 .clearfix::after {    
 	clear: both;
 	content: "";
@@ -21,26 +25,34 @@ body {
      
 }
 
-.links-b, .links-m{
-    height: 100px;
-    margin: 0 auto 10px;
-    background-color: white;
-    width: 75%;
+
+/* The Close Button */
+.close {
+    color: rgb(190, 190, 190);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 h1{
     color: white;
-    float: left;
-    margin: 10px 0 0 50px;
+    /* float: left; */
+    /* margin: 10px 0 0 50px; */
     font-size: 50px;
 }
 
-header {
-    width: 100%;
+header, .header{
+    /* width: 100%; */
     background: black;
-    height: 75px
+    /* height: 75px */
 }
-
 
 .info-b, .info-m{
     width: 80%;
@@ -49,21 +61,11 @@ header {
     margin: 25px auto;
 }
 
-#movie {
-    width: 50%;
-    float: left;
-    height: 1000px;
-    background-image: url("../images/reel2.jpg");
-    background-position:center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#search{
-    float: right;
-    padding: 25px 50px 25px 0;
-    width: 317px;
+.links-b, .links-m{
+    height: 50px;
+    /* margin: 0 auto 10px; */
+    background-color: black;
+    width: 50px;
 }
 
 .parsley-errors-list filled {
@@ -96,19 +98,15 @@ header {
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
-.close {
-    color: rgb(190, 190, 190);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
+#movie {
+    width: 50%;
+    float: left;
+    height: 1000px;
+    background-image: url("../images/reel2.jpg");
+    background-position:center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #myBtn {
@@ -129,10 +127,10 @@ header {
 }
 
 .poster-b, .poster-m {
-    background: white;
+    background: #00000094;
     width: 350px;
-    height: 500px;
     margin: 25px auto;
+    border-radius: 10px;
 }
 
 .rating-b, .rating-m{
@@ -140,6 +138,13 @@ header {
     height: 70px;
     background-color: white;
     margin: 0 auto;
+}
+
+
+#search{
+    /* float: right;
+    padding: 25px 50px 25px 0;
+    width: 317px; */
 }
 
 #search-input{
