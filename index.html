@@ -13,17 +13,14 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
 
 
         <style>
-            #book-review{
+           #book-review{
                 display:none;
             }
             
-            /* #bookPoster{
-                height:400px;
-                width:300px;
-            } */
 
         </style>
     </head>
@@ -57,9 +54,9 @@
             <!-- <header>
                 <h1>Title</h1>
                 <div class="" id="search">
-                    <form role="form">                            
-                        <button id="search-btn" type="submit">Search</button>
-                        <input id="search-input" type="text" placeholder="type your title" >
+                    <form id="search-form" data-validate="parsley">                            
+                        <input id="search-btn" type="submit" class="btn-btn-success" value="Search">
+                        <input id="search-input" type="text" placeholder="enter a movie or book title" data-parsley-required data-parsley-maxlength="20">
                     </form>
                 </div>
  
@@ -67,11 +64,29 @@
         
             <div class="clearfix" id="book">
                 <div class = "poster-b">
+
                         <img id="bookPoster" src="" width="200px" height="300px">
+
 
                         <div class="links-b"></div>
 
+
                 </div>
+
+                
+        <!-- Trigger/Open The Book review Modal -->
+<button id="myBRBtn">Read Book reviews</button>
+
+<!-- The Modal -->
+<div id="modal-book-review" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="BRclose">&times;</span>
+    <p id="bookreviews"></p>
+  </div>
+
+</div>
 
                 <div class="rating-b">
                   <h3 id="book-rating"></h3>
@@ -83,7 +98,11 @@
                         <h3 id ="publish_date"></h3>
 
                 </div>
-                
+
+                <div class="links-b">
+                    <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
+                    <a href=""><img id="goodreads" src="assets/images/goodreads.jpg" height="50px" width="50px" alt="Goodreads"></a>
+
                 </div>
                 
                 <!-- <a href=""><div id="to-movie"></div></a> -->
@@ -95,7 +114,7 @@
                         <img id="moviePoster" src="" width="200px" height="300px">
                     </div>
                     <div class="rating-m">
-    
+                        <h3 id="movie-rating"></h3>
                     </div>
                     <div class="info-m">
                         <h3 id="movieRelease"></h3>
@@ -104,6 +123,7 @@
     
                     </div>
                     <div class="links-m">
+                        <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                         
                     </div>
 
@@ -129,6 +149,7 @@
   </div>
 
 </div>
+
 
         <script type="text/javascript" src="assets/javascript/app.js"></script>
     </body>
