@@ -32,34 +32,38 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).done(function(response) {
         console.log(response);
-      var poster = (response.results[0].poster_path);
+
+        if (response.results.length === 0) {
+            console.log("movie not found");
+        }
+        var poster = (response.results[0].poster_path);
       
-      $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
+        $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
 
-      $("#synopsis").text(response.results[0].overview);
+        $("#synopsis").text(response.results[0].overview);
 
-      $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+        $("#movieRelease").text("Release Date: " + response.results[0].release_date);
 
-      var movieID = (response.results[0].id);
-      console.log (movieID);
+        var movieID = (response.results[0].id);
+        console.log (movieID);
 
-      console.log(movie);
+        console.log(movie);
 
-      //Getting the streaming site 
+        //Getting the streaming site 
 
-      var movieStream = "https://www.fan.tv/movies/"+movieID;
-      console.log(movieStream);
-      $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+        var movieStream = "https://www.fan.tv/movies/"+movieID;
+        console.log(movieStream);
+        $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
 
-      var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+        var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
         $.ajax({
         url: creditsURL,
         method: "GET"
         }).then(function(response) {
-        
+        console.log(response);
 
         var director = response.crew.find(function(item) {
             return item.job === "Director"
@@ -71,9 +75,16 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
             return item.job === "Screenplay"
         });
 
+        var novel = response.crew.find(function(item) {
+            return item.job === "Novel"
+        });
+        console.log (novel);
+
         $("#movieScreen").text("Screenplay: " + screenplay.name);
         
         });
+    }).fail (function (error) {
+        console.log ("movie not found");
     });
 
     
@@ -112,7 +123,7 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
             $.ajax({
                 url: bookIDURL,
                 method: 'GET'
-                }).done(function(response) {
+                }).then(function(response) {
                 //var xmlDoc =$.parseXML(response);
                 //console.log(response);
                 // console.log(xmlDoc);
@@ -150,15 +161,9 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
                
 
-                }).fail(function(error){
-                    console.log("not");
-                });
+                })
         }).fail(function(error){
-            console.log ("NOPE");
-        });
-
-        $(document).ajaxError(function(){
-            alert("An error occurred!");
+            console.log ("book not found");
         });
 
 //});
