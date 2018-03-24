@@ -18,6 +18,7 @@ $(document).ready(function() {
     });
 });
 
+
 // Search Button
 
 
@@ -184,7 +185,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 
 // functon for th buttons to move between the to sections with 750px -540px
 var app = {
