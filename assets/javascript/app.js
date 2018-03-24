@@ -1,6 +1,28 @@
+$(document).ready(function() {
+    $("#search-btn").on('click', function(e){
+        e.preventDefault();
+        $("#search-form").parsley().validate();
+        if ($("#search-form").parsley().isValid()){
+            search(event);
+        }
+    });
+
+    $("#search-input").on('keypress', function(e){
+        if (event.keyCode === 13) {
+            e.preventDefault();
+            $("#search-form").parsley().validate();
+            if ($("#search-form").parsley().isValid()){
+                search(event);
+            }
+        }
+    });
+});
+
 // Search Button
-$("#search-btn").on("click", function(event) {
-    event.preventDefault();
+
+
+//$("#search-btn").on("click", function(event) {
+function search(event) {
 
     // Movie Info Ajax
 var movie = $("#search-input").val().trim();
@@ -122,7 +144,12 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 });
         });
 
-});
+        $(document).ajaxError(function(){
+            alert("An error occurred!");
+        });
+
+//});
+    };
 
 
 
