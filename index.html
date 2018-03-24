@@ -27,31 +27,27 @@
     <body>
 
         <div id="container">
-            <!-- serch field input and button -->
+            <!-- serch field input and button 
             <div class="container header clearfix">
                 <div class="row">
                     <div class="col-3">
                         <h1>Title</h1>
                     </div>
 
-                    <!-- <div class="col" id="search">
-                        <form role="form">                            
-                            <button class="btn btn-light" id="search-btn" type="submit">Search</button>
-                            <input id="search-input" type="text" placeholder="type your title" >
-                        </form>
-                    </div> -->
 
-                    <form role="form" class="form-inline col-5" id="search">
+
+                    <form role="form" class="form-inline col-5" id="search" data-validate="parsley">
                         <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" class="form-control" id="search-input" placeholder="type your title">
+                            <input type="text" class="form-control" id="search-input" placeholder="type your title" data-parsley-required data-parsley-maxlength="20">
                         </div>
                         <button class="btn btn-light mb-2" id="search-btn" type="submit">Search</button>
                     </form>
                     
                 </div>
 
-            </div>
-            <!-- <header>
+            </div>-->
+
+            <header>
                 <h1>Title</h1>
                 <div class="" id="search">
                     <form id="search-form" data-validate="parsley">                            
@@ -60,7 +56,7 @@
                     </form>
                 </div>
  
-            </header> -->
+            </header>
         
             <div class="clearfix" id="book">
                 <div class = "poster-b">
