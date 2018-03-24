@@ -1,6 +1,9 @@
+body {
+    font-family: 'Eczar', serif;
+}
+
 #book {
     width: 50%;
-    background: greenyellow;
     float: left;
     height: 1000px;
     background-image: url("../images/press.jpg");
@@ -11,20 +14,232 @@
 
 }
 
+.clearfix::after {    
+	clear: both;
+	content: "";
+	display: table;
+     
+}
+
+.links-b, .links-m{
+    height: 50;
+    /* margin: 0 auto 10px; */
+    background-color: black;
+    width: 50px;
+}
+
+h1{
+    color: white;
+    /* float: left; */
+    /* margin: 10px 0 0 50px; */
+    font-size: 50px;
+}
+
+header, .header{
+    /* width: 100%; */
+    background: black;
+    /* height: 75px */
+}
+
+
+.info-b, .info-m{
+    width: 80%;
+    height: 200px;
+    background-color: white;
+    margin: 25px auto;
+}
+
 #movie {
     width: 50%;
-    background: turquoise;
     float: left;
     height: 1000px;
-    background-image: url("../images/reel.jpg");
-    background-position: center;
+    background-image: url("../images/reel2.jpg");
+    background-position:center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-#search {
-    width: 100%;
-    background: black;
-    height: 75px;
+#search{
+    /* float: right;
+    padding: 25px 50px 25px 0;
+    width: 317px; */
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 25%;
+    top: 34%;
+    width: 50%;
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    color: white;
+    background-color: black;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid rgb(190, 190, 190);
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: rgb(190, 190, 190);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myBtn {
+    background-color: black;
+    font-family: 'Eczar', serif;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.poster-b, .poster-m {
+    background: #00000094;
+    width: 350px;
+    margin: 25px auto;
+    border-radius: 10px;
+}
+
+.rating-b, .rating-m{
+    width: 125px;
+    height: 70px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+#search-input{
+    width: 250px;
+}
+
+@media screen and (max-width: 750px) {
+    
+    #book {
+        width: 100%;
+        float: none;
+        height: 1000px;
+        background-image: url("../images/press.jpg");
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 25px;
+    
+    }
+
+    h1{
+        color: white;
+        float: none;
+        text-align: center;
+        font-size: 50px;
+    }
+
+    header {
+        width: 100%;
+        background: black;
+        height: 100px;
+        padding: 10px 0;
+    }
+    
+
+    #movie {
+        width: 100%;
+        float: none;
+        height: 1000px;
+        background-image: url("../images/reel2.jpg");
+        background-position:center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 25px;
+        display: none;
+    }
+
+    .poster-b, .poster-m {
+        background: white;
+        width: 350px;
+        height: 500px;
+
+    }
+
+    .info-b, .rating-b, .links-b, .poster-b {
+        margin: 0 0 25px 25px;
+    }
+
+    .info-b, .rating-b, .info-m, .rating-m, .links-b, .links-m {
+        width: 65%;
+        min-width: 350px;
+    }
+
+    .info-m, .rating-m, .links-m, .poster-m {
+        margin: 0 25px 25px auto;
+
+    }
+
+    #search{
+        float: none;
+        padding: 0;
+        margin: 5px auto 0;
+    }
+
+
+    #to-movie{
+        background-image: url("../images/tomovie.png");
+        width: 146px;
+        height: 75px;
+        position: fixed;
+        top: 340px;
+        right: 5px;
+    }
+    #to-movie:hover {
+        background-image: url("../images/tomovie-hover.png");
+    }
+  
+    #to-book{
+        background-image: url("../images/tobook.png");
+        width: 146px;
+        height: 75px;
+        position: fixed;
+        top: 340px;
+        left: 5px;
+    }
+    #to-book:hover {
+        background-image: url("../images/tobook-hover.png");
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    #to-book, #to-movie{
+        display: none;
+    }
+
+
 }
