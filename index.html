@@ -8,24 +8,90 @@
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
 
-           
+        <style>
+            #book-review{
+                display:none;
+            }
+        </style>
     </head>
     <body>
         <div id="container">
-            <div id="search">
-
-            </div>
+            <!-- serch field input and button -->
+            <header>
+                <h1>Title</h1>
+                <div class="" id="search">
+                    <form role="form">                            
+                        <button id="search-btn" type="submit">Search</button>
+                        <input id="search-input" type="text" placeholder="type your title" >
+                    </form>
+                </div>
+ 
+            </header>
         
-            <div id="book">
+            <div class="clearfix" id="book">
+                <div class = "poster-b">
+                        <img id="bookPoster" src="">
+
+                </div>
+
+                <div class="rating-b">
+                  <h3 id="book-rating"></h3>
+
+                </div>
+                <div class="info-b">
+                        <h3 id="author"></h3>
+                        <h3 id="publisher"></h3>
+
+                </div>
+                <div class="links-b">
+
+                </div>
+                
+                <!-- <a href=""><div id="to-movie"></div></a> -->
+                <div id="to-movie"></div>
 
             </div>
-            <div id="movie">
+            <div class="clearfix" id="movie">
+                    <div class="poster-m">
+                        <img id="moviePoster" src="">
+                    </div>
+                    <div class="rating-m">
+    
+                    </div>
+                    <div class="info-m">
+                        <h3 id="movieRelease"></h3>
+                        <h3 id="movieDir"></h3>
+                        <h3 id="movieScreen"></h3>
+    
+                    </div>
+                    <div class="links-m">
+                        
+                    </div>
 
+                    <div id="to-book"></div>
             </div>
-
-
         </div>
+
+        
+    <div id="book-review" >
+    </div>
+    
+
+        <!-- Trigger/Open The Modal -->
+<button id="myBtn">SYNOPSIS</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="synopsis"></p>
+  </div>
+
+</div>
 
         <script type="text/javascript" src="assets/javascript/app.js"></script>
     </body>
