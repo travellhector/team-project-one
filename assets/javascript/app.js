@@ -31,26 +31,35 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
+    }).done(function(response) {
+        console.log(response);
 
-
-      var poster = (response.results[0].poster_path);
+        if (response.results.length === 0) {
+            console.log("movie not found");
+        }
+        var poster = (response.results[0].poster_path);
       
-      $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
-      $("#synopsis").text(response.results[0].overview);
-      $("#movieRelease").text("Release Date: " + response.results[0].release_date);
 
-      var movieID = (response.results[0].id);
-      console.log (movieID);
-      console.log(movie);
+        $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
 
-      //Getting the streaming site 
+        $("#synopsis").text(response.results[0].overview);
 
-      var movieStream = "https://www.fan.tv/movies/"+movieID;
-      //console.log(movieStream);
-      $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+        $("#movieRelease").text("Release Date: " + response.results[0].release_date);
 
-      var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+        var movieID = (response.results[0].id);
+        console.log (movieID);
+
+        console.log(movie);
+
+        //Getting the streaming site 
+
+
+        var movieStream = "https://www.fan.tv/movies/"+movieID;
+        console.log(movieStream);
+        $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+
+
+        var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
         $.ajax({
         url: creditsURL,
@@ -68,9 +77,16 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
             return item.job === "Screenplay"
         });
 
+        var novel = response.crew.find(function(item) {
+            return item.job === "Novel"
+        });
+        console.log (novel);
+
         $("#movieScreen").text("Screenplay: " + screenplay.name);
         
         });
+    }).fail (function (error) {
+        console.log ("movie not found");
     });
 
     //Getting the movie rating 
@@ -95,8 +111,11 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         $.ajax({
             url: queryURL,
             method: 'GET'
-        }).then(function(response) {
-            //console.log(response);
+
+        }).done(function(response) {
+           console.log(response);
+        // console.log(response.reviews_widget);
+
             $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
@@ -106,7 +125,10 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 url: bookIDURL,
                 method: 'GET'
                 }).then(function(response) {
+
+
                console.log(response);
+
                 var $xml=$(response);
                 var $rating = $xml.find("average_rating");
                 var $author = $xml.find("author name");
@@ -138,12 +160,12 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
                 $("#bookPoster").attr("src", $bookPosterLink);
                 $('#publish_date').text("Publication Date :"+publication_date);
                $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
-                });
-        });
+               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")               
 
-        $(document).ajaxError(function(){
-            alert("An error occurred!");
+                })
+        }).fail(function(error){
+            console.log ("book not found");
+
         });
 
 //});
