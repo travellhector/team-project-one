@@ -69,6 +69,14 @@ header, .header{
     float: right;
 }
 
+.parsley-errors-list filled {
+    
+}
+
+.parsley-required {
+    color: white;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
