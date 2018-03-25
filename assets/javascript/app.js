@@ -212,23 +212,36 @@ var app = {
 };
 
 function showMovie() {
-    app.showingMovie = true;
-    app.showingBook = false;
-    $("#movie").show();
-    $("#book").hide();
+    // app.showingMovie = true;
+    // app.showingBook = false;
+    $("#movie").css("display", "block");
+    $("#book").css("display", "none");
 }
 
 function showBook() {
-    app.showingMovie = false;
-    app.showingBook = true;
-    $("#movie").hide();
-    $("#book").show();
+    // app.showingMovie = false;
+    // app.showingBook = true;
+    $("#movie").css("display", "none");
+    $("#book").css("display", "block");
 }
 
 function onButtonClick() {
-    if(app.showingBook) { showMovie(); }
-    else { showBook(); }
+    // if(app.showingBook) { showMovie(); }
+    // else { showBook(); }
+    if ($("#book").css("display") === "block") {
+        showMovie();
+
+    }else {
+        showBook();
+    }
 }
+
+setInterval(function(){
+    if(jQuery(window).width()>=750){
+        $("#book").css("display", "block");
+        $("#movie").css("display", "block");
+    }
+}, 500)
 
 $(".toggleDisplay").on("click", onButtonClick);
 

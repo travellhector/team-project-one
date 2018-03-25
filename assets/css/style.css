@@ -64,8 +64,9 @@ header, .header{
 .links-b, .links-m{
     height: 50px;
     /* margin: 0 auto 10px; */
-    background-color: black;
+    background-color: white;
     width: 50px;
+    float: right;
 }
 
 .parsley-errors-list filled {
@@ -149,6 +150,16 @@ header, .header{
 
 #search-input{
     width: 250px;
+}
+
+
+@media screen and (max-width: 540px) {
+
+    #to-book, #to-movie{
+        display: none;
+    }
+
+    
 }
 
 @media screen and (max-width: 750px) {
@@ -248,11 +259,9 @@ header, .header{
 
 }
 
-@media screen and (max-width: 540px) {
-
-    #to-book, #to-movie{
-        display: none;
+@media screen and (max-width: 768px)
+{
+    #movie, #book{
+        display: block;
     }
-
-
 }
