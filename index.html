@@ -28,26 +28,28 @@
     <body>
 
         <div id="container">
-            <!-- serch field input and button 
+            <!-- serch field input and button  -->
             <div class="container header clearfix">
                 <div class="row">
                     <div class="col-3">
                         <h1>Title</h1>
                     </div>
+                    <div class="col-5" id="search">
+                        <form role="form" class="form-inline " id="search-form" data-validate="parsley">
 
-                    <form role="form" class="form-inline col-5" id="search">
-
-                        <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" class="form-control" id="search-input" placeholder="type your title" data-parsley-required data-parsley-maxlength="20">
-                        </div>
-                        <button class="btn btn-light mb-2" id="search-btn" type="submit">Search</button>
-                    </form>
+                            <div class="form-group mx-sm-3 mb-2 mt-">
+                                <input type="text" class="form-control" id="search-input" placeholder="enter a movie or book title" data-parsley-required data-parsley-maxlength="20">
+                            </div>
+                            <!-- <button class="btn btn-light mb-2" id="search-btn" type="submit">Search</button> -->
+                            <input id="search-btn" type="submit" class="btn btn-light mb-2" value="Search">
+                        </form>
+                    </div>
                     
                 </div>
 
-            </div>-->
+            </div>
 
-            <header>
+            <!-- <header>
                 <h1>Title</h1>
                 <div class="" id="search">
                     <form id="search-form" data-validate="parsley">                            
@@ -56,38 +58,44 @@
                     </form>
                 </div>
  
-            </header>
+            </header> -->
         
             <div class="clearfix" id="book">
                 <div class = "poster-b clearfix">
 
-                        <img id="bookPoster" src="" width="200px" height="300px">
+                    <img id="bookPoster" src="" width="200px" height="300px">
 
 
-                        <div class="links-b"></div>
-
-
-                </div>
-
-                
-        <!-- Trigger/Open The Book review Modal -->
-<button id="myBRBtn">Read Book reviews</button>
-
-<!-- The Modal -->
-<div id="modal-book-review" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="BRclose">&times;</span>
-    <p id="bookreviews"></p>
-  </div>
-
-</div>
-
-                <div class="rating-b">
-                  <h3 id="book-rating"></h3>
+                    <div class="links-b">
+                        <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
+                        <a href=""><img id="goodreads" src="assets/images/goodreads.png" height="50px" width="50px" alt="Goodreads"></a>
+    
+                    </div>
 
                 </div>
+
+                <div id="sec2-b">
+                    <!-- Trigger/Open The Book review Modal -->
+                    <button id="myBRBtn">Book Reviews</button>
+
+                    <!-- The Modal -->
+                    <div id="modal-book-review" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="BRclose">&times;</span>
+                            <p id="bookreviews"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="rating-b"> <strong>Rating:</strong> 
+                        <span id="book-rating"></span>
+
+                    </div>
+                </div>
+                    
+
                 <div class="info-b">
                         <h3 id="author"></h3>
                         <h3 id="publisher"></h3>
@@ -95,17 +103,18 @@
 
                 </div>
 
-                <div class="links-b">
+                <!-- <div class="links-b">
                     <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
                     <a href=""><img id="goodreads" src="assets/images/goodreads.jpg" height="50px" width="50px" alt="Goodreads"></a>
 
-                </div>
+                </div> -->
                 
                 <!-- <a href=""><div id="to-movie"></div></a> -->
                 <div id="to-movie" class="toggleDisplay"></div>
 
             </div>
             <div class="clearfix" id="movie">
+              
                     <div class="poster-m">
                         <img id="moviePoster" src="" width="200px" height="300px">
                     </div>
@@ -123,33 +132,52 @@
                         <h3 id="movieScreen"></h3>
     
                     </div>
+
                     <div class="links-m">
                         <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                         
                     </div>
 
-                    <div id="to-book" class="toggleDisplay"></div>
+                </div>
+
+                <div id="sec2-b">
+                        
+                    <button id="">Trailer</button>
+                    
+                    <div class="rating-m"> <strong>Rating:</strong> 
+                        <span id="movie-rating"></span>
+
+                    </div>
+                </div>
+
+                <div class="info-m">
+                    <h3 id="movieRelease"></h3>
+                    <h3 id="movieDir"></h3>
+                    <h3 id="movieScreen"></h3>
+
+                </div>
+                <!-- <div class="links-m">
+                    <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
+                    
+                </div> -->
+
+                <div id="to-book" class="toggleDisplay"></div>
             </div>
         </div>
 
-        
-    <div id="book-review" >
-    </div>
-    
-
         <!-- Trigger/Open The Modal -->
-<button id="myBtn">SYNOPSIS</button>
+        <button id="myBtn">SYNOPSIS</button>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p id="synopsis"></p>
-  </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="synopsis"></p>
+        </div>
 
-</div>
+        </div>
 
 
         <script type="text/javascript" src="assets/javascript/app.js"></script>
