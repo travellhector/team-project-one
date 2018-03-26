@@ -18,80 +18,111 @@ $(document).ready(function() {
     });
 });
 
-// Search Button
-
-//$("#search-btn").on("click", function(event) {
+// Search Function
 function search(event) {
 
     // Movie Info Ajax
-var movie = $("#search-input").val().trim();
+    var movie = $("#search-input").val().trim();
 
-var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
+    var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
 
+    // Make ajax requesti on movie API first
     $.ajax({
       url: queryURL,
       method: "GET"
     }).done(function(response) {
         console.log(response);
 
+        // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
         if (response.results.length === 0) {
             console.log("movie not found");
+            bookSearch();
         }
-        var poster = (response.results[0].poster_path);
-      
 
-        $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
+        // If movie results are found, change html to display movie results
+        else {
+            console.log(movie);
 
-        $("#synopsis").text(response.results[0].overview);
+            var poster = (response.results[0].poster_path);
 
-        $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+            var movieID = (response.results[0].id);
 
-        var movieID = (response.results[0].id);
-        console.log (movieID);
+            console.log (movieID);
 
-        console.log(movie);
+            // Url for credits search
+            var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
-        //Getting the streaming site 
+            // Url for streaming site
+            var movieStream = "https://www.fan.tv/movies/"+movieID;
+            console.log(movieStream);
+
+            $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
+
+            $("#synopsis").text(response.results[0].overview);
+
+            $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+
+            $('#fanTV').parent().attr("href",movieStream).attr("target","_blank");
+
+            // AJAX request for movie credits
+            $.ajax({
+            url: creditsURL,
+            method: "GET"
+            }).then(function(response) {
+                console.log(response);
+
+                var director = response.crew.find(function(item) {
+                    return item.job === "Director"
+                });
+
+                var screenplay = response.crew.find(function(item) {
+                    return item.job === "Screenplay"
+                });
+
+                var writer = response.crew.find(function(item) {
+                    return item.job === "Writer"
+                });
+
+                var novel = response.crew.find(function(item) {
+                    return item.job === "Novel"
+                });
+
+                var author = response.crew.find(function(item) {
+                    return item.job === "Author"
+                });
+
+                $("#movieDir").text("Director: " + director.name);
+
+                
 
 
-        var movieStream = "https://www.fan.tv/movies/"+movieID;
-        console.log(movieStream);
-        $('#fanTV').parent().attr("href",movieStream).attr("target","_blank")
+                if (screenplay === undefined) {
+                    $("#movieScreen").text("Screenplay: " + writer.name);
+                }
+                else {
+                    $("#movieScreen").text("Screenplay: " + screenplay.name);
+                }
 
+                if (novel === undefined && author === undefined) {
+                    console.log ("book not found");
+                }
 
-        var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+                // If movie is based on a novel, proceed to book search.
+                else {
+                    console.log (novel || author);
+                    bookSearch();
+                }
 
-        $.ajax({
-        url: creditsURL,
-        method: "GET"
-        }).then(function(response) {
-        console.log(response);
+            });
+        }
 
-        var director = response.crew.find(function(item) {
-            return item.job === "Director"
-        });
-
-        $("#movieDir").text("Director: " + director.name);
-
-        var screenplay = response.crew.find(function(item) {
-            return item.job === "Screenplay"
-        });
-
-        var novel = response.crew.find(function(item) {
-            return item.job === "Novel"
-        });
-        console.log (novel);
-
-        $("#movieScreen").text("Screenplay: " + screenplay.name);
-        
-        });
     }).fail (function (error) {
         console.log ("movie not found");
     });
 
-    //Getting the movie rating 
+//Getting the movie rating 
 
-    var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
 
     $.ajax({
         url: omdbURL,
@@ -100,14 +131,21 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
         //console.log(response);
          $("#movie-rating").text(response.imdbRating);
     });
-        //Establing the book urls
-        var corsProxy = "https://cors-anywhere.herokuapp.com/";
-        var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
-        var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
-        var queryURL = corsProxy + apiUrl;
-        var bookIDURL = corsProxy+xmlURL;
-        // Getting the widget for the reviews 
-        // Getting the URL for the link to the goodreads bookpage
+
+
+
+
+    //Establing the book urls
+    var corsProxy = "https://cors-anywhere.herokuapp.com/";
+    var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
+    var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
+    var queryURL = corsProxy + apiUrl;
+    var bookIDURL = corsProxy+xmlURL;
+    // Getting the widget for the reviews 
+    // Getting the URL for the link to the goodreads bookpage
+
+    function bookSearch() {
+    
         $.ajax({
             url: queryURL,
             method: 'GET'
@@ -167,9 +205,9 @@ var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c41806430
             console.log ("book not found");
 
         });
+    }
 
-//});
-    };
+};
 
 // Synopsis Modal
 var modal = document.getElementById('myModal');
@@ -205,7 +243,7 @@ window.onclick = function(event) {
 }
 
 
-// functon for th buttons to move between the to sections with 750px -540px
+// functon for th buttons to move between the two sections with 750px -540px
 var app = {
     showingBook: true,
     showingMovie: false
