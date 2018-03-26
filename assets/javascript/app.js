@@ -75,11 +75,12 @@ function search(event) {
                     return item.job === "Director"
                 });
 
-                var screenplay = response.crew.find(function(item) {
+                var screenplay = response.crew.filter(function(item) {
                     return item.job === "Screenplay"
                 });
+                console.log(screenplay);
 
-                var writer = response.crew.find(function(item) {
+                var writer = response.crew.filter(function(item) {
                     return item.job === "Writer"
                 });
 
@@ -90,6 +91,15 @@ function search(event) {
                 var author = response.crew.find(function(item) {
                     return item.job === "Author"
                 });
+
+                var actors = [];
+                actors = response.cast.filter(function(item) {
+                    return item.name
+                });
+
+                for (var i = 0; i < 5; i++) {
+                    console.log (actors[i].name);
+                }
 
                 $("#movieDir").text("Director: " + director.name);
 
@@ -282,4 +292,52 @@ setInterval(function(){
 }, 500)
 
 $(".toggleDisplay").on("click", onButtonClick);
+
+
+
+//Youtube Trailer
+
+
+function keyWordsearch(){
+    gapi.client.setApiKey('AIzaSyBirSWhi-hjDSVb-EC06suntg6gZzGch3Q');
+    gapi.client.load('youtube', 'v3', function() {
+    
+      var userMovie = $('#search-input').val() + " trailer";
+  
+      data = jQuery.parseJSON(`{ "data": [
+        {
+          "name": "${userMovie}"
+        }
+      ]}`);
+  
+      for (var i = 0; i < data.data.length; i++) {
+        makeRequest(data.data[i].name);
+      }  
+  
+    });
+  }
+  
+  function makeRequest(q) {
+    var request = gapi.client.youtube.search.list({
+      q: q,
+      part: 'snippet', 
+      maxResults: 1
+    });
+    request.execute(function(response)  {
+    
+        $('#results').empty()                                       
+      var srchItems = response.result.items;
+      for (var i = 0; i < srchItems.length; i++) {
+  
+        var videoID = srchItems[i].id.videoId;
+        $('#results').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
+      }  
+    })  
+  }
+  
+  $('Play-Trailer').on('click', function(event) {
+      event.preventDefault()
+      keyWordsearch();
+  })
+
 
