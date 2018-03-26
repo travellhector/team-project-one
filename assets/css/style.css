@@ -1,5 +1,6 @@
 body {
     font-family: 'Eczar', serif;
+    background-color: black;
 }
 
 #book {
@@ -57,16 +58,24 @@ header, .header{
 .info-b, .info-m{
     width: 80%;
     height: 200px;
-    background-color: white;
+    background: #00000094;
     margin: 25px auto;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 350px;
+    color: white;
 }
 
 .links-b, .links-m{
-    height: 50px;
+    /* height: 50px; */
     /* margin: 0 auto 10px; */
-    background-color: white;
+    /* background-color: white; */
     width: 50px;
     float: right;
+}
+
+.links-b img, .links-m img {
+    margin-top: 15px;
 }
 
 .parsley-errors-list filled {
@@ -127,18 +136,22 @@ header, .header{
     bottom: 0;
 }
 
-.poster-b, .poster-m {
+.poster-b, .poster-m, #sec2-b{
     background: #00000094;
     width: 350px;
     margin: 25px auto;
     border-radius: 10px;
+    padding: 20px;
 }
 
-.rating-b, .rating-m{
+.rating-b, .rating-m {
     width: 125px;
     height: 70px;
-    background-color: white;
-    margin: 0 auto;
+    background-color: ;
+    color: white;
+    /* margin: 0 auto; */
+    float: right;
+
 }
 
 
@@ -257,11 +270,4 @@ header, .header{
         background-image: url("../images/tobook-hover.png");
     }
 
-}
-
-@media screen and (max-width: 768px)
-{
-    #movie, #book{
-        display: block;
-    }
 }
