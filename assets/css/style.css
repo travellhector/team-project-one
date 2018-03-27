@@ -3,6 +3,16 @@ body {
     background-color: black;
 }
 
+#landing {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -25px;
+}
+
 #book {
     width: 50%;
     float: left;
