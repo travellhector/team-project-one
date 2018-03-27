@@ -3,6 +3,7 @@ $("#moviecontent").hide();
 $("#sorrybook").hide();
 $("#sorrymovie").hide();
 $("#searching").hide();
+
 $(document).ready(function() {
     $("#search-btn").on('click', function(e){
         e.preventDefault();
@@ -21,12 +22,15 @@ $(document).ready(function() {
         }
     });
 });
+
 // Search Function
 function search(event) {
-    // Movie Info Ajax
+
+    // TMDB API
     var movie = $("#search-input").val().trim();
     var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
-    // Make ajax requesti on movie API first
+    
+    // Make ajax request on movie API first
     $.ajax({
       url: movieQueryURL,
       method: "GET"
@@ -34,6 +38,7 @@ function search(event) {
         $("#bookcontent").hide();
         $("#searching").show();
         console.log(response);
+
         // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
         if (response.results.length === 0) {
             $("#moviecontent").hide();
@@ -90,11 +95,12 @@ function search(event) {
                 }
                 var sw = writers.join(', ');
                 $("#movieScreen").text("Screenplay: " + sw);
+                // If movie is not based on a book, show "book not found"
                 if (novel === undefined && author === undefined) {
                     $("#bookcontent").hide();
                     console.log ("book not found");
                 }
-                // If movie is based on a novel, proceed to book search.
+                // If movie is based on a book, proceed to book search.
                 else {
                     bookSearch();
                 }
@@ -104,74 +110,65 @@ function search(event) {
         $("#moviecontent").hide();
         console.log ("movie not found");
     });
-//Getting the movie rating 
-var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+
+    //Movie Rating from OMDB
+    var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
     $.ajax({
         url: omdbURL,
         method: "GET"
-      }).then(function(response) {
+        }).then(function(response) {
         //console.log(response);
          $("#movie-rating").text(response.imdbRating);
     });
-    //Establing the book urls
+
+    //Goodreads API URLs
     var corsProxy = "https://cors-anywhere.herokuapp.com/";
     var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
     var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
     var bookQueryURL = corsProxy + apiUrl;
     var bookIDURL = corsProxy+xmlURL;
-    // Getting the widget for the reviews 
-    // Getting the URL for the link to the goodreads bookpage
-    function bookSearch() {
     
+    function bookSearch() {
         $.ajax({
             url: bookQueryURL,
             method: 'GET'
         }).done(function(response) {
-            
             console.log(response);
-            //  console.log(response.reviews_widget);            $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
             console.log(bookPage);
+
             //Parsing the xml to get the book rating, author name and publisher
             $.ajax({
                 url: bookIDURL,
                 method: 'GET'
                 }).then(function(response) {
-               console.log(response);
-                var $xml=$(response);
-                var $rating = $xml.find("average_rating");
-                var $author = $xml.find("author name");
-                var $publisher =$xml.find("publisher");
-                var $bookPoster = $xml.find("image_url");
-                var $bookPosterLink = $bookPoster.html();
-                var $publication_year = $xml.find("publication_year");
-                var $publication_month =$xml.find("publication_month");
-                var $publication_day =$xml.find("publication_day");
-                var publication_date =$publication_month.html()+"-"+$publication_day.html()+"-"+$publication_year.html();
-                //var $isbn = $xml.find("isbn");
-                //console.log($rating.html());
-                //console.log($publisher.html());
-                //console.log($author.html());
-                //console.log($bookPosterLink);
-                //console.log(publication_date);
-                //var isbn = ($isbn.html());
-               // console.log(isbn);
-                //var num =isbn.slice(9,19)
-                //console.log(num);
-              //console.log("http://covers.openlibrary.org/b/isbn/"+num+"-L.jpg")
-              var amazon= "https://www.amazon.com/s/ref=nb_sb_ss_c_1_5?url=search-alias%3Dstripbooks&field-keywords="+movie;
-   
-              //console.log(amazon);
-           
-                $("#author").text("Author: "+$author.html());
-                $("#publisher").text("Publisher: "+$publisher.html());
-                $("#book-rating").text($rating.html());
-                $("#bookPoster").attr("src", $bookPosterLink);
-                $('#publish_date').text("Publication Date :"+publication_date);
-               $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
-               $("#bookcontent").show();           
+                    console.log(response);
+                    var $xml=$(response);
+                    var $rating = $xml.find("average_rating");
+                    var $author = $xml.find("author name");
+                    var $publisher =$xml.find("publisher");
+                    var $bookPoster = $xml.find("image_url");
+                    var $bookPosterLink = $bookPoster.html();
+                    var $publication_year = $xml.find("publication_year");
+                    var $publication_month =$xml.find("publication_month");
+                    var $publication_day =$xml.find("publication_day");
+                    var publication_date =$publication_month.html()+"-"+$publication_day.html()+"-"+$publication_year.html();
+                    var amazon= "https://www.amazon.com/s/ref=nb_sb_ss_c_1_5?url=search-alias%3Dstripbooks&field-keywords="+movie;
+                    var bookSynopsis_data = $xml.find("description");
+                    var bookSynopsis_cut = bookSynopsis_data.html();
+                    var bookSynopis = bookSynopsis_cut.slice(8);
+                    console.log(bookSynopis);
+
+            
+                    $("#author").text("Author: "+$author.html());
+                    $("#publisher").text("Publisher: "+$publisher.html());
+                    $("#book-rating").text($rating.html());
+                    $("#bookPoster").attr("src", $bookPosterLink);
+                    $('#publish_date').text("Publication Date :"+publication_date);
+                    $('#amazon').parent().attr("href",amazon).attr("target","_blank")
+                    $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
+                    $("#bookcontent").show();           
                 })
         }).fail(function(error){
             $("#bookcontent").hide();
@@ -179,6 +176,7 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
         });
     }
 };
+
 // Synopsis Modal
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
@@ -194,6 +192,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 // Book Reviews Modal
 var bookReviewsModal = document.getElementById('modal-book-review');
 var BRbtn = document.getElementById("myBRBtn");
@@ -209,11 +208,12 @@ window.onclick = function(event) {
         bookReviewsModal.style.display = "none";
     }
 }
-//Play trailer Modal 
+
+//Play Trailer Modal 
 var playTrailerModal = document.getElementById('myTrailerModal');
 var Trailerbtn = document.getElementById("myTrailerBtn");
 var Trailerspan = document.getElementsByClassName("trailer-close")[0];
-  Trailerbtn.onclick = function() {
+    Trailerbtn.onclick = function() {
     playTrailerModal.style.display = "block";
 }
 Trailerspan.onclick = function() {
@@ -224,7 +224,8 @@ window.onclick = function(event) {
         playTrailerModal.style.display = "none";
     }
 }
-// functon for th buttons to move between the two sections with 750px -540px
+
+// Toggle Between Movie and Book Sections at 750px -540px
 var app = {
     showingBook: true,
     showingMovie: false
@@ -277,9 +278,9 @@ function keyWordsearch(){
       }  
   
     });
-  }
+}
   
-  function makeRequest(q) {
+function makeRequest(q) {
     var request = gapi.client.youtube.search.list({
       q: q,
       part: 'snippet', 
@@ -295,10 +296,10 @@ function keyWordsearch(){
         $('#myTrailerModal').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
       }  
     })  
-  }
+}
   
-  $("#myTrailerBtn").on('click', function(event) {
+$("#myTrailerBtn").on('click', function(event) {
       event.preventDefault()
       keyWordsearch();
       console.log ("clicked")
-  })
+})
