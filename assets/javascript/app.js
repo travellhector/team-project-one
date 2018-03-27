@@ -85,6 +85,19 @@ function search(event) {
                 var author = response.crew.find(function(item) {
                     return item.job === "Author"
                 });
+
+                var book = response.crew.find(function(item) {
+                    return item.job === "Book"
+                });
+
+                var story = response.crew.find(function(item) {
+                    return item.job === "Original Story"
+                });
+
+                var theater = response.crew.find(function(item) {
+                    return item.job === "Theatre Play"
+                });
+
                 $("#movieDir").text("Director: " + director.name);
                 
                 // Repeating element 
@@ -102,7 +115,7 @@ function search(event) {
                 var sw = writers.join(', ');
                 $("#movieScreen").text("Screenplay: " + sw);
                 // If movie is not based on a book, show "book not found"
-                if (novel === undefined && author === undefined) {
+                if (novel === undefined && author === undefined && book === undefined && story == undefined && theater === undefined) {
                     $("#bookcontent").hide();
                     $("#searching").hide();
                     $("#sorrybook").show();
@@ -141,6 +154,7 @@ function search(event) {
             method: 'GET'
         }).done(function(response) {
             console.log(response);
+            $('#bookreviews').empty();
             $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
             console.log(bookPage);
@@ -171,8 +185,9 @@ function search(event) {
                     $("#book-rating").text($rating.html());
                     $("#bookPoster").attr("src", $bookPosterLink);
                     $('#publish_date').text("Publication Date: "+publication_date);
-                    $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-                    $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
+                    $('#amazon').parent().attr("href",amazon).attr("target","_blank");
+                    $('#goodreads').empty();
+                    $('#goodreads').parent().attr("href",bookPage).attr("target","_blank");
                     $("#searching").hide();
                     $("#bookcontent").show();
                     
