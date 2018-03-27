@@ -1,3 +1,9 @@
+$("#bookcontent").hide();
+$("#moviecontent").hide();
+$("#sorrybook").hide();
+$("#sorrymovie").hide();
+$("#searching").hide();
+
 $(document).ready(function() {
     $("#search-btn").on('click', function(e){
         e.preventDefault();
@@ -31,30 +37,30 @@ function search(event) {
       url: movieQueryURL,
       method: "GET"
     }).done(function(response) {
+        $("#bookcontent").hide();
+        $("#searching").show();
         console.log(response);
 
         // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
         if (response.results.length === 0) {
+            $("#moviecontent").hide();
             console.log("movie not found");
             bookSearch();
         }
 
         // If movie results are found, change html to display movie results
         else {
-            console.log(movie);
+            $("#moviecontent").show();
 
             var poster = (response.results[0].poster_path);
 
             var movieID = (response.results[0].id);
-
-            console.log (movieID);
 
             // Url for credits search
             var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
             // Url for streaming site
             var movieStream = "https://www.fan.tv/movies/"+movieID;
-            console.log(movieStream);
 
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
 
@@ -108,21 +114,17 @@ function search(event) {
                     }
                 }
 
-                console.log (writers);
-
                 var sw = writers.join(', ');
-
-                console.log (sw);
 
                 $("#movieScreen").text("Screenplay: " + sw);
 
                 if (novel === undefined && author === undefined) {
+                    $("#bookcontent").hide();
                     console.log ("book not found");
                 }
 
                 // If movie is based on a novel, proceed to book search.
                 else {
-                    console.log (novel || author);
                     bookSearch();
                 }
 
@@ -130,6 +132,7 @@ function search(event) {
         }
 
     }).fail (function (error) {
+        $("#moviecontent").hide();
         console.log ("movie not found");
     });
 
@@ -164,8 +167,9 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
             method: 'GET'
 
         }).done(function(response) {
-           console.log(response);
-        // console.log(response.reviews_widget);
+            
+            console.log(response);
+        //  console.log(response.reviews_widget);
 
             $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
@@ -211,10 +215,12 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
                 $("#bookPoster").attr("src", $bookPosterLink);
                 $('#publish_date').text("Publication Date :"+publication_date);
                $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")               
+               $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
+               $("#bookcontent").show();           
 
                 })
         }).fail(function(error){
+            $("#bookcontent").hide();
             console.log ("book not found");
 
         });
