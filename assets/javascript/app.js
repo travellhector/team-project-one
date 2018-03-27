@@ -335,9 +335,10 @@ function keyWordsearch(){
     })  
   }
   
-  $('Play-Trailer').on('click', function(event) {
+  $("#Play-Trailer").on('click', function(event) {
       event.preventDefault()
       keyWordsearch();
+      console.log ("clicked")
   })
 
 
