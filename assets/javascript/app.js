@@ -3,7 +3,6 @@ $("#moviecontent").hide();
 $("#sorrybook").hide();
 $("#sorrymovie").hide();
 $("#searching").hide();
-
 $(document).ready(function() {
     $("#search-btn").on('click', function(e){
         e.preventDefault();
@@ -12,7 +11,6 @@ $(document).ready(function() {
             search(event);
         }
     });
-
     $("#search-input").on('keypress', function(e){
         if (event.keyCode === 13) {
             e.preventDefault();
@@ -23,15 +21,11 @@ $(document).ready(function() {
         }
     });
 });
-
 // Search Function
 function search(event) {
-
     // Movie Info Ajax
     var movie = $("#search-input").val().trim();
-
     var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
-
     // Make ajax requesti on movie API first
     $.ajax({
       url: movieQueryURL,
@@ -40,69 +34,50 @@ function search(event) {
         $("#bookcontent").hide();
         $("#searching").show();
         console.log(response);
-
         // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
         if (response.results.length === 0) {
             $("#moviecontent").hide();
             console.log("movie not found");
             bookSearch();
         }
-
         // If movie results are found, change html to display movie results
         else {
             $("#moviecontent").show();
-
             var poster = (response.results[0].poster_path);
-
             var movieID = (response.results[0].id);
-
             // Url for credits search
             var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
-
             // Url for streaming site
             var movieStream = "https://www.fan.tv/movies/"+movieID;
-
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
-
             $("#synopsis").text(response.results[0].overview);
-
             $("#movieRelease").text("Release Date: " + response.results[0].release_date);
-
             $('#fanTV').parent().attr("href",movieStream).attr("target","_blank");
-
             // AJAX request for movie credits
             $.ajax({
             url: creditsURL,
             method: "GET"
             }).then(function(response) {
                 console.log(response);
-
                 var director = response.crew.find(function(item) {
                     return item.job === "Director"
                 });
-
                 var screenplay = response.crew.filter(function(item) {
                     return item.job === "Screenplay"
                 });
-
                 var writer = response.crew.filter(function(item) {
                     return item.job === "Writer"
                 });
-
                 var novel = response.crew.find(function(item) {
                     return item.job === "Novel"
                 });
-
                 var author = response.crew.find(function(item) {
                     return item.job === "Author"
                 });
-
                 $("#movieDir").text("Director: " + director.name);
-
                 
                 // Repeating element 
                 var writers = [];
-
                 if (screenplay === undefined) {
                     for (var i = 0; i < writer.length; i++) {
                         writers.push(writer[i].name);
@@ -113,33 +88,24 @@ function search(event) {
                         writers.push(screenplay[i].name);
                     }
                 }
-
                 var sw = writers.join(', ');
-
                 $("#movieScreen").text("Screenplay: " + sw);
-
                 if (novel === undefined && author === undefined) {
                     $("#bookcontent").hide();
                     console.log ("book not found");
                 }
-
                 // If movie is based on a novel, proceed to book search.
                 else {
                     bookSearch();
                 }
-
             });
         }
-
     }).fail (function (error) {
         $("#moviecontent").hide();
         console.log ("movie not found");
     });
-
 //Getting the movie rating 
-
 var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
-
     $.ajax({
         url: omdbURL,
         method: "GET"
@@ -147,10 +113,6 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
         //console.log(response);
          $("#movie-rating").text(response.imdbRating);
     });
-
-
-
-
     //Establing the book urls
     var corsProxy = "https://cors-anywhere.herokuapp.com/";
     var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
@@ -159,31 +121,24 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
     var bookIDURL = corsProxy+xmlURL;
     // Getting the widget for the reviews 
     // Getting the URL for the link to the goodreads bookpage
-
     function bookSearch() {
     
         $.ajax({
             url: bookQueryURL,
             method: 'GET'
-
         }).done(function(response) {
             
             console.log(response);
-        //  console.log(response.reviews_widget);
-
-            $("#book-review").append(response.reviews_widget);
+            //  console.log(response.reviews_widget);            $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
-            //console.log(bookPage);
+            console.log(bookPage);
             //Parsing the xml to get the book rating, author name and publisher
             $.ajax({
                 url: bookIDURL,
                 method: 'GET'
                 }).then(function(response) {
-
-
                console.log(response);
-
                 var $xml=$(response);
                 var $rating = $xml.find("average_rating");
                 var $author = $xml.find("author name");
@@ -217,17 +172,13 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
                $('#amazon').parent().attr("href",amazon).attr("target","_blank")
                $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
                $("#bookcontent").show();           
-
                 })
         }).fail(function(error){
             $("#bookcontent").hide();
             console.log ("book not found");
-
         });
     }
-
 };
-
 // Synopsis Modal
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
@@ -243,8 +194,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
-
 // Book Reviews Modal
 var bookReviewsModal = document.getElementById('modal-book-review');
 var BRbtn = document.getElementById("myBRBtn");
@@ -260,47 +209,96 @@ window.onclick = function(event) {
         bookReviewsModal.style.display = "none";
     }
 }
-
-
+//Play trailer Modal 
+var playTrailerModal = document.getElementById('myTrailerModal');
+var Trailerbtn = document.getElementById("myTrailerBtn");
+var Trailerspan = document.getElementsByClassName("trailer-close")[0];
+  Trailerbtn.onclick = function() {
+    playTrailerModal.style.display = "block";
+}
+Trailerspan.onclick = function() {
+    playTrailerModal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == playTrailerModal) {
+        playTrailerModal.style.display = "none";
+    }
+}
 // functon for th buttons to move between the two sections with 750px -540px
 var app = {
     showingBook: true,
     showingMovie: false
 };
-
 function showMovie() {
     // app.showingMovie = true;
     // app.showingBook = false;
     $("#movie").css("display", "block");
     $("#book").css("display", "none");
 }
-
 function showBook() {
     // app.showingMovie = false;
     // app.showingBook = true;
     $("#movie").css("display", "none");
     $("#book").css("display", "block");
 }
-
 function onButtonClick() {
     // if(app.showingBook) { showMovie(); }
     // else { showBook(); }
     if ($("#book").css("display") === "block") {
         showMovie();
-
     }else {
         showBook();
     }
 }
-
 setInterval(function(){
     if(jQuery(window).width()>=751){
         $("#book").css("display", "block");
         $("#movie").css("display", "block");
     }
 }, 500)
-
 $(".toggleDisplay").on("click", onButtonClick);
 
 
-
+//Youtube Trailer
+function keyWordsearch(){
+    gapi.client.setApiKey('AIzaSyBirSWhi-hjDSVb-EC06suntg6gZzGch3Q');
+    gapi.client.load('youtube', 'v3', function() {
+    
+      var userMovie = $('#search-input').val() + " trailer";
+  
+      data = jQuery.parseJSON(`{ "data": [
+        {
+          "name": "${userMovie}"
+        }
+      ]}`);
+  
+      for (var i = 0; i < data.data.length; i++) {
+        makeRequest(data.data[i].name);
+      }  
+  
+    });
+  }
+  
+  function makeRequest(q) {
+    var request = gapi.client.youtube.search.list({
+      q: q,
+      part: 'snippet', 
+      maxResults: 1
+    });
+    request.execute(function(response)  {
+    
+        $('#myTrailerModal').empty()                                       
+      var srchItems = response.result.items;
+      for (var i = 0; i < srchItems.length; i++) {
+  
+        var videoID = srchItems[i].id.videoId;
+        $('#myTrailerModal').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
+      }  
+    })  
+  }
+  
+  $("#myTrailerBtn").on('click', function(event) {
+      event.preventDefault()
+      keyWordsearch();
+      console.log ("clicked")
+  })
