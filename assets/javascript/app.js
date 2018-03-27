@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 // Search Function
 function search(event) {
+    $("#landing").hide();
 
     var found;
 
