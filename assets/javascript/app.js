@@ -24,11 +24,11 @@ function search(event) {
     // Movie Info Ajax
     var movie = $("#search-input").val().trim();
 
-    var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
+    var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
 
     // Make ajax requesti on movie API first
     $.ajax({
-      url: queryURL,
+      url: movieQueryURL,
       method: "GET"
     }).done(function(response) {
         console.log(response);
@@ -78,7 +78,6 @@ function search(event) {
                 var screenplay = response.crew.filter(function(item) {
                     return item.job === "Screenplay"
                 });
-                console.log(screenplay);
 
                 var writer = response.crew.filter(function(item) {
                     return item.job === "Writer"
@@ -92,26 +91,30 @@ function search(event) {
                     return item.job === "Author"
                 });
 
-                var actors = [];
-                actors = response.cast.filter(function(item) {
-                    return item.name
-                });
-
-                for (var i = 0; i < 5; i++) {
-                    console.log (actors[i].name);
-                }
-
                 $("#movieDir").text("Director: " + director.name);
 
                 
-
+                // Repeating element 
+                var writers = [];
 
                 if (screenplay === undefined) {
-                    $("#movieScreen").text("Screenplay: " + writer.name);
+                    for (var i = 0; i < writer.length; i++) {
+                        writers.push(writer[i].name);
+                    }
                 }
                 else {
-                    $("#movieScreen").text("Screenplay: " + screenplay.name);
+                    for (var i = 0; i < screenplay.length; i++) {
+                        writers.push(screenplay[i].name);
+                    }
                 }
+
+                console.log (writers);
+
+                var sw = writers.join(', ');
+
+                console.log (sw);
+
+                $("#movieScreen").text("Screenplay: " + sw);
 
                 if (novel === undefined && author === undefined) {
                     console.log ("book not found");
@@ -149,7 +152,7 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
     var corsProxy = "https://cors-anywhere.herokuapp.com/";
     var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
     var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
-    var queryURL = corsProxy + apiUrl;
+    var bookQueryURL = corsProxy + apiUrl;
     var bookIDURL = corsProxy+xmlURL;
     // Getting the widget for the reviews 
     // Getting the URL for the link to the goodreads bookpage
@@ -157,7 +160,7 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
     function bookSearch() {
     
         $.ajax({
-            url: queryURL,
+            url: bookQueryURL,
             method: 'GET'
 
         }).done(function(response) {
@@ -293,52 +296,5 @@ setInterval(function(){
 
 $(".toggleDisplay").on("click", onButtonClick);
 
-
-
-//Youtube Trailer
-
-
-function keyWordsearch(){
-    gapi.client.setApiKey('AIzaSyBirSWhi-hjDSVb-EC06suntg6gZzGch3Q');
-    gapi.client.load('youtube', 'v3', function() {
-    
-      var userMovie = $('#search-input').val() + " trailer";
-  
-      data = jQuery.parseJSON(`{ "data": [
-        {
-          "name": "${userMovie}"
-        }
-      ]}`);
-  
-      for (var i = 0; i < data.data.length; i++) {
-        makeRequest(data.data[i].name);
-      }  
-  
-    });
-  }
-  
-  function makeRequest(q) {
-    var request = gapi.client.youtube.search.list({
-      q: q,
-      part: 'snippet', 
-      maxResults: 1
-    });
-    request.execute(function(response)  {
-    
-        $('#results').empty()                                       
-      var srchItems = response.result.items;
-      for (var i = 0; i < srchItems.length; i++) {
-  
-        var videoID = srchItems[i].id.videoId;
-        $('#results').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
-      }  
-    })  
-  }
-  
-  $("#Play-Trailer").on('click', function(event) {
-      event.preventDefault()
-      keyWordsearch();
-      console.log ("clicked")
-  })
 
 
