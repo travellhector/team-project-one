@@ -24,11 +24,11 @@ function search(event) {
     // Movie Info Ajax
     var movie = $("#search-input").val().trim();
 
-    var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
+    var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
 
     // Make ajax requesti on movie API first
     $.ajax({
-      url: queryURL,
+      url: movieQueryURL,
       method: "GET"
     }).done(function(response) {
         console.log(response);
@@ -149,7 +149,7 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
     var corsProxy = "https://cors-anywhere.herokuapp.com/";
     var apiUrl = "https://www.goodreads.com/book/title.json?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
     var xmlURL = "https://www.goodreads.com/book/title.xml?&key=htK1rTgrTI2aSg6OHjHKg&title="+movie;
-    var queryURL = corsProxy + apiUrl;
+    var bookQueryURL = corsProxy + apiUrl;
     var bookIDURL = corsProxy+xmlURL;
     // Getting the widget for the reviews 
     // Getting the URL for the link to the goodreads bookpage
@@ -157,12 +157,12 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
     function bookSearch() {
     
         $.ajax({
-            url: queryURL,
+            url: bookQueryURL,
             method: 'GET'
 
         }).done(function(response) {
            console.log(response);
-        // console.log(response.reviews_widget);
+         console.log(response.reviews_widget);
 
             $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
@@ -252,6 +252,21 @@ window.onclick = function(event) {
     }
 }
 
+//Play trailer Modal 
+var playTrailerModal = document.getElementById('myTrailerModal');
+var Trailerbtn = document.getElementById("myTrailerBtn");
+var Trailerspan = document.getElementsByClassName("Tclose")[0];
+Trailerbtn.onclick = function() {
+    playTrailerModal.style.display = "block";
+}
+Trailerspan.onclick = function() {
+    playTrailerModal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == playTrailerModal) {
+        playTrailerModal.style.display = "none";
+    }
+}
 
 // functon for th buttons to move between the two sections with 750px -540px
 var app = {
@@ -325,17 +340,17 @@ function keyWordsearch(){
     });
     request.execute(function(response)  {
     
-        $('#results').empty()                                       
+        $('#myTrailerModal').empty()                                       
       var srchItems = response.result.items;
       for (var i = 0; i < srchItems.length; i++) {
   
         var videoID = srchItems[i].id.videoId;
-        $('#results').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
+        $('#myTrailerModal').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
       }  
     })  
   }
   
-  $("#Play-Trailer").on('click', function(event) {
+  $("#myTrailerBtn").on('click', function(event) {
       event.preventDefault()
       keyWordsearch();
       console.log ("clicked")
