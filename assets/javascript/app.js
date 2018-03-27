@@ -26,6 +26,8 @@ $(document).ready(function() {
 // Search Function
 function search(event) {
 
+    var found;
+
     // TMDB API
     var movie = $("#search-input").val().trim();
     var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1fc17c4180643016e173ba07928a30f2&query="+encodeURI(movie)+"&page=1";
@@ -35,18 +37,22 @@ function search(event) {
       url: movieQueryURL,
       method: "GET"
     }).done(function(response) {
+        $("#sorrymovie").hide();
+        $("#sorrybook").hide();
         $("#bookcontent").hide();
         $("#searching").show();
         console.log(response);
 
         // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
         if (response.results.length === 0) {
+            found = false;
             $("#moviecontent").hide();
-            console.log("movie not found");
+            $("#sorrymovie").show();
             bookSearch();
         }
         // If movie results are found, change html to display movie results
         else {
+            found = true;
             $("#moviecontent").show();
             var poster = (response.results[0].poster_path);
             var movieID = (response.results[0].id);
@@ -98,7 +104,8 @@ function search(event) {
                 // If movie is not based on a book, show "book not found"
                 if (novel === undefined && author === undefined) {
                     $("#bookcontent").hide();
-                    console.log ("book not found");
+                    $("#searching").hide();
+                    $("#sorrybook").show();
                 }
                 // If movie is based on a book, proceed to book search.
                 else {
@@ -108,7 +115,7 @@ function search(event) {
         }
     }).fail (function (error) {
         $("#moviecontent").hide();
-        console.log ("movie not found");
+        $("#sorrymovie").show();
     });
 
     //Movie Rating from OMDB
@@ -158,21 +165,26 @@ function search(event) {
                     var bookSynopsis_data = $xml.find("description");
                     var bookSynopsis_cut = bookSynopsis_data.html();
                     var bookSynopis = bookSynopsis_cut.slice(8);
-                    console.log(bookSynopis);
-
             
                     $("#author").text("Author: "+$author.html());
                     $("#publisher").text("Publisher: "+$publisher.html());
                     $("#book-rating").text($rating.html());
                     $("#bookPoster").attr("src", $bookPosterLink);
-                    $('#publish_date').text("Publication Date :"+publication_date);
+                    $('#publish_date').text("Publication Date: "+publication_date);
                     $('#amazon').parent().attr("href",amazon).attr("target","_blank")
                     $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
-                    $("#bookcontent").show();           
+                    $("#searching").hide();
+                    $("#bookcontent").show();
+                    
+                    if (found === false) {
+                        $("#synopsis").text(bookSynopis);
+                    }
+
                 })
         }).fail(function(error){
             $("#bookcontent").hide();
-            console.log ("book not found");
+            $("#searching").hide();
+            $("#sorrybook").show();
         });
     }
 };
