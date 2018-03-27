@@ -1,5 +1,8 @@
 $("#bookcontent").hide();
 $("#moviecontent").hide();
+$("#sorrybook").hide();
+$("#sorrymovie").hide();
+$("#searching").hide();
 
 $(document).ready(function() {
     $("#search-btn").on('click', function(e){
@@ -35,6 +38,7 @@ function search(event) {
       method: "GET"
     }).done(function(response) {
         $("#bookcontent").hide();
+        $("#searching").show();
         console.log(response);
 
         // If no movie results are found, change html to show "movie not found". Proceed to standalone book search.
@@ -47,20 +51,16 @@ function search(event) {
         // If movie results are found, change html to display movie results
         else {
             $("#moviecontent").show();
-            console.log(movie);
 
             var poster = (response.results[0].poster_path);
 
             var movieID = (response.results[0].id);
-
-            console.log (movieID);
 
             // Url for credits search
             var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
 
             // Url for streaming site
             var movieStream = "https://www.fan.tv/movies/"+movieID;
-            console.log(movieStream);
 
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
 
@@ -114,11 +114,7 @@ function search(event) {
                     }
                 }
 
-                console.log (writers);
-
                 var sw = writers.join(', ');
-
-                console.log (sw);
 
                 $("#movieScreen").text("Screenplay: " + sw);
 
@@ -129,7 +125,6 @@ function search(event) {
 
                 // If movie is based on a novel, proceed to book search.
                 else {
-                    console.log (novel || author);
                     bookSearch();
                 }
 
@@ -173,9 +168,8 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
 
         }).done(function(response) {
             
-            
-           console.log(response);
-        // console.log(response.reviews_widget);
+            console.log(response);
+        //  console.log(response.reviews_widget);
 
             $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
