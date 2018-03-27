@@ -78,7 +78,6 @@ function search(event) {
                 var screenplay = response.crew.filter(function(item) {
                     return item.job === "Screenplay"
                 });
-                console.log(screenplay);
 
                 var writer = response.crew.filter(function(item) {
                     return item.job === "Writer"
@@ -92,26 +91,30 @@ function search(event) {
                     return item.job === "Author"
                 });
 
-                var actors = [];
-                actors = response.cast.filter(function(item) {
-                    return item.name
-                });
-
-                for (var i = 0; i < 5; i++) {
-                    console.log (actors[i].name);
-                }
-
                 $("#movieDir").text("Director: " + director.name);
 
                 
-
+                // Repeating element 
+                var writers = [];
 
                 if (screenplay === undefined) {
-                    $("#movieScreen").text("Screenplay: " + writer.name);
+                    for (var i = 0; i < writer.length; i++) {
+                        writers.push(writer[i].name);
+                    }
                 }
                 else {
-                    $("#movieScreen").text("Screenplay: " + screenplay.name);
+                    for (var i = 0; i < screenplay.length; i++) {
+                        writers.push(screenplay[i].name);
+                    }
                 }
+
+                console.log (writers);
+
+                var sw = writers.join(', ');
+
+                console.log (sw);
+
+                $("#movieScreen").text("Screenplay: " + sw);
 
                 if (novel === undefined && author === undefined) {
                     console.log ("book not found");
@@ -300,7 +303,7 @@ function onButtonClick() {
 }
 
 setInterval(function(){
-    if(jQuery(window).width()>=750){
+    if(jQuery(window).width()>=751){
         $("#book").css("display", "block");
         $("#movie").css("display", "block");
     }
@@ -355,5 +358,6 @@ function keyWordsearch(){
       keyWordsearch();
       console.log ("clicked")
   })
+
 
 
