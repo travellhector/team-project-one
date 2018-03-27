@@ -6,7 +6,7 @@ body {
 #book {
     width: 50%;
     float: left;
-    height: 1000px;
+    height: 750px;
     background-image: url("../images/press.jpg");
     background-position: center;
     background-attachment: fixed;
@@ -57,7 +57,7 @@ header, .header{
 
 .info-b, .info-m{
     width: 80%;
-    height: 200px;
+    height: ;
     background: #00000094;
     margin: 25px auto;
     border-radius: 10px;
@@ -111,7 +111,7 @@ header, .header{
 #movie {
     width: 50%;
     float: left;
-    height: 1000px;
+    height: 750px;
     background-image: url("../images/reel2.jpg");
     background-position:center;
     background-attachment: fixed;
@@ -136,7 +136,7 @@ header, .header{
     bottom: 0;
 }
 
-.poster-b, .poster-m, #sec2-b{
+.poster-b, .poster-m, #sec2-b, #sec2-m{
     background: #00000094;
     width: 350px;
     margin: 25px auto;
@@ -180,12 +180,7 @@ header, .header{
     #book {
         width: 100%;
         float: none;
-        height: 1000px;
         background-image: url("../images/press.jpg");
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
         padding-top: 25px;
     
     }
@@ -208,33 +203,28 @@ header, .header{
     #movie {
         width: 100%;
         float: none;
-        height: 1000px;
         background-image: url("../images/reel2.jpg");
-        background-position:center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
         padding-top: 25px;
         display: none;
     }
 
     .poster-b, .poster-m {
-        background: white;
+        background:;
         width: 350px;
         height: 500px;
 
     }
 
-    .info-b, .rating-b, .links-b, .poster-b {
+    .info-b, .poster-b, #sec2-b {
         margin: 0 0 25px 25px;
     }
 
-    .info-b, .rating-b, .info-m, .rating-m, .links-b, .links-m {
+    .info-b, .info-m{
         width: 65%;
         min-width: 350px;
     }
 
-    .info-m, .rating-m, .links-m, .poster-m {
+    .info-m, .poster-m, #sec2-m {
         margin: 0 25px 25px auto;
 
     }

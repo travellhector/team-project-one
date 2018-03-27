@@ -288,7 +288,7 @@ function onButtonClick() {
 }
 
 setInterval(function(){
-    if(jQuery(window).width()>=750){
+    if(jQuery(window).width()>=751){
         $("#book").css("display", "block");
         $("#movie").css("display", "block");
     }
