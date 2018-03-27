@@ -12,7 +12,6 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 #bookPoster{
@@ -22,12 +21,9 @@ body {
 .clearfix::after {    
 	clear: both;
 	content: "";
-	display: table;
-     
+	display: table;  
 }
 
-
-/* The Close Button */
 .close {
     color: rgb(190, 190, 190);
     float: right;
@@ -44,20 +40,15 @@ body {
 
 h1{
     color: white;
-    /* float: left; */
-    /* margin: 10px 0 0 50px; */
     font-size: 50px;
 }
 
 header, .header{
-    /* width: 100%; */
     background: black;
-    /* height: 75px */
 }
 
 .info-b, .info-m{
     width: 80%;
-    height: ;
     background: #00000094;
     margin: 25px auto;
     border-radius: 10px;
@@ -67,19 +58,12 @@ header, .header{
 }
 
 .links-b, .links-m{
-    /* height: 50px; */
-    /* margin: 0 auto 10px; */
-    /* background-color: white; */
     width: 50px;
     float: right;
 }
 
 .links-b img, .links-m img {
     margin-top: 15px;
-}
-
-.parsley-errors-list filled {
-    
 }
 
 .parsley-required {
@@ -147,19 +131,12 @@ header, .header{
 .rating-b, .rating-m {
     width: 125px;
     height: 70px;
-    background-color: ;
     color: white;
     /* margin: 0 auto; */
     float: right;
 
 }
 
-
-#search{
-    /* float: right;
-    padding: 25px 50px 25px 0;
-    width: 317px; */
-}
 
 #search-input{
     width: 250px;
@@ -209,7 +186,6 @@ header, .header{
     }
 
     .poster-b, .poster-m {
-        background:;
         width: 350px;
         height: 500px;
 
