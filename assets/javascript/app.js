@@ -165,7 +165,7 @@ var omdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=tri
 
         }).done(function(response) {
            console.log(response);
-        // console.log(response.reviews_widget);
+         console.log(response.reviews_widget);
 
             $("#book-review").append(response.reviews_widget);
             $('#bookreviews').append(response.reviews_widget);
@@ -255,6 +255,21 @@ window.onclick = function(event) {
     }
 }
 
+//Play trailer Modal 
+var playTrailerModal = document.getElementById('myTrailerModal');
+var Trailerbtn = document.getElementById("myTrailerBtn");
+var Trailerspan = document.getElementsByClassName("Tclose")[0];
+Trailerbtn.onclick = function() {
+    playTrailerModal.style.display = "block";
+}
+Trailerspan.onclick = function() {
+    playTrailerModal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == playTrailerModal) {
+        playTrailerModal.style.display = "none";
+    }
+}
 
 // functon for th buttons to move between the two sections with 750px -540px
 var app = {
@@ -295,6 +310,54 @@ setInterval(function(){
 }, 500)
 
 $(".toggleDisplay").on("click", onButtonClick);
+
+
+
+//Youtube Trailer
+
+
+function keyWordsearch(){
+    gapi.client.setApiKey('AIzaSyBirSWhi-hjDSVb-EC06suntg6gZzGch3Q');
+    gapi.client.load('youtube', 'v3', function() {
+    
+      var userMovie = $('#search-input').val() + " trailer";
+  
+      data = jQuery.parseJSON(`{ "data": [
+        {
+          "name": "${userMovie}"
+        }
+      ]}`);
+  
+      for (var i = 0; i < data.data.length; i++) {
+        makeRequest(data.data[i].name);
+      }  
+  
+    });
+  }
+  
+  function makeRequest(q) {
+    var request = gapi.client.youtube.search.list({
+      q: q,
+      part: 'snippet', 
+      maxResults: 1
+    });
+    request.execute(function(response)  {
+    
+        $('#myTrailerModal').empty()                                       
+      var srchItems = response.result.items;
+      for (var i = 0; i < srchItems.length; i++) {
+  
+        var videoID = srchItems[i].id.videoId;
+        $('#myTrailerModal').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>')
+      }  
+    })  
+  }
+  
+  $("#myTrailerBtn").on('click', function(event) {
+      event.preventDefault()
+      keyWordsearch();
+      console.log ("clicked")
+  })
 
 
 
