@@ -175,7 +175,7 @@ function search(event) {
                     var $publication_year = $xml.find("publication_year");
                     var $publication_month =$xml.find("publication_month");
                     var $publication_day =$xml.find("publication_day");
-                    var publication_date =$publication_month.html()+"-"+$publication_day.html()+"-"+$publication_year.html();
+                    var publication_date =$publication_year.html()+"-"+$publication_month.html()+"-"+$publication_day.html();
                     var amazon= "https://www.amazon.com/s/ref=nb_sb_ss_c_1_5?url=search-alias%3Dstripbooks&field-keywords="+movie;
                     var bookSynopsis_data = $xml.find("description");
                     var bookSynopsis_cut = bookSynopsis_data.html();
