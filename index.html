@@ -15,6 +15,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 
 
         <style>
@@ -54,7 +55,7 @@
                 <div class="" id="search">
                     <form id="search-form" data-validate="parsley">                            
                         <input id="search-btn" type="submit" class="btn-btn-success" value="Search">
-                        <input id="search-input" type="text" placeholder="enter a movie or book title" data-parsley-required data-parsley-maxlength="20">
+                        <input id="search-input" type="text" placeholder="enter a movie or book title" data-parsley-required>
                     </form>
                 </div>
  
@@ -114,9 +115,23 @@
 
             </div>
             <div class="clearfix" id="movie">
-                <div class="poster-m">
-                    <img id="moviePoster" src="" width="200px" height="300px">
+                    <div class="poster-m">
+                        <img id="moviePoster" src="" width="200px" height="300px">
+                    </div>
 
+
+                    <!-- Play Trailer Button -->
+                    <button id="Play-Trailer">Watch Trailer</button>
+
+                    <div class="rating-m">
+                        <h3 id="movie-rating"></h3>
+                    </div>
+                    <div class="info-m">
+                        <h3 id="movieRelease"></h3>
+                        <h3 id="movieDir"></h3>
+                        <h3 id="movieScreen"></h3>
+    
+                    </div>
                     <div class="links-m">
                         <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                         
