@@ -7,27 +7,20 @@
         </title>
         
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
         <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-
-
         <style>
            #book-review{
                 display:none;
             }
             
-
         </style>
     </head>
     <body>
-
         <div id="container">
             <!-- serch field input and button  -->
             <div class="container header clearfix">
@@ -37,7 +30,6 @@
                     </div>
                     <div class="col-5" id="search">
                         <form role="form" class="form-inline " id="search-form" data-validate="parsley">
-
                             <div class="form-group mx-sm-3 mb-2 mt-">
                                 <input type="text" class="form-control" id="search-input" placeholder="enter a movie or book title" data-parsley-required>
                             </div>
@@ -47,9 +39,7 @@
                     </div>
                     
                 </div>
-
             </div>
-
             <!-- <header>
                 <h1>Title</h1>
                 <div class="" id="search">
@@ -66,87 +56,75 @@
                 <!-- These are for you Travell -->
                 <div id="sorrybook"></div>
                 <div id="searching"></div>
-
                 <div id="bookcontent">
                     <div class = "poster-b clearfix">
-
                         <img id="bookPoster" src="" width="200px" height="300px">
-
-
                         <div class="links-b">
                             <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
                             <a href=""><img id="goodreads" src="assets/images/goodreads.png" height="50px" width="50px" alt="Goodreads"></a>
         
                         </div>
-
                     </div>
-
                     <div id="sec2-b">
                         <!-- Trigger/Open The Book review Modal -->
                         <button id="myBRBtn">Book Reviews</button>
-
                         <!-- The Modal -->
                         <div id="modal-book-review" class="modal">
-
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span class="BRclose">&times;</span>
                                 <p id="bookreviews"></p>
                             </div>
-
                         </div>
-
                         <div class="rating-b"> <strong>Rating:</strong> 
                             <span id="book-rating"></span>
-
                         </div>
                     </div>
                         
-
                     <div class="info-b">
                             <h3 id="author"></h3>
                             <h3 id="publisher"></h3>
                             <h3 id ="publish_date"></h3>
-
                     </div>
-
                     <!-- <div class="links-b">
                         <a href=""><img id="amazon" src="assets/images/amazon.png" height="50px" width="50px" alt="Amazon"></a>
                         <a href=""><img id="goodreads" src="assets/images/goodreads.jpg" height="50px" width="50px" alt="Goodreads"></a>
-
                     </div> -->
                     
                     <!-- <a href=""><div id="to-movie"></div></a> -->
                     <div id="to-movie" class="toggleDisplay"></div>
                 </div>
             </div>
-
-
-
-
             <div class="clearfix" id="movie">
-
                 <!-- This too -->
                 <div id="sorrybook"></div>
-
                 <div id="moviecontent">
                     <div class="poster-m" id="objects">
                         <img id="moviePoster" src="" width="200px" height="300px">
-
                         <div class="links-m">
                             <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                             
                         </div>
                     </div>
-
-
                     
                     <div id="sec2-m">
+                            
                         <!-- Play Trailer Button -->
-                        <button id="">Trailer</button>
-                        
+                       
+                        <!-- Trigger/Open The Modal -->
+                        <button id="myTrailerBtn">Play-Trailer</button>
+                        <!-- The Modal -->
+                        <div id="myTrailerModal" class="modal">
+                      
+                        <!-- Modal content -->
+                         <div class="trailer-modal-content">
+                            <span class="trailer-close">&times;</span>
+                            <p id="trailer"></p>
+                          </div>
+                         </div>
                         <div class="rating-m"> <strong>Rating:</strong> 
                             <span id="movie-rating"></span>
+                        
     
                         </div>
                     </div>
@@ -154,35 +132,27 @@
                         <h3 id="movieRelease"></h3>
                         <h3 id="movieDir"></h3>
                         <h3 id="movieScreen"></h3>
-    
+                       
                     </div>
-
                 </div>
-
                 <!-- <div class="links-m">
                     <a href=""><img id="fanTV" src="assets/images/fanTV.jpg" height="50px" width="50px" alt="fanTV"></a>
                     
                 </div> -->
-
                 <div id="to-book" class="toggleDisplay"></div>
             </div>
         </div>
-
         <!-- Trigger/Open The Modal -->
         <button id="myBtn">SYNOPSIS</button>
-
         <!-- The Modal -->
         <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <p id="synopsis"></p>
         </div>
-
+       
         </div>
-
-
         <script type="text/javascript" src="assets/javascript/app.js"></script>
     </body>
     
