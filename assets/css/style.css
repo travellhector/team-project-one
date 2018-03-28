@@ -16,7 +16,7 @@ body {
 #book {
     width: 50%;
     float: left;
-    height: 750px;
+    height: 900px;
     background-image: url("../images/press.jpg");
     background-position: center;
     background-attachment: fixed;
@@ -125,7 +125,7 @@ header, .header{
 #movie {
     width: 50%;
     float: left;
-    height: 750px;
+    height: 900px;
     background-image: url("../images/reel2.jpg");
     background-position:center;
     background-attachment: fixed;
