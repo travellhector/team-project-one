@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 // Search Function
 function search(event) {
+    $("#landing").hide();
 
     var found;
 
@@ -58,11 +59,13 @@ function search(event) {
             var movieID = (response.results[0].id);
             // Url for credits search
             var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+            var amazonMovieBuy = "https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Dmovies-tv&field-keywords="+movie;
             // Url for streaming site
             var movieStream = "https://www.fan.tv/movies/"+movieID;
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
             $("#synopsis").text(response.results[0].overview);
             $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+            $('#amazonMovie').parent().attr("href",amazonMovieBuy).attr("target","_blank");
             $('#fanTV').parent().attr("href",movieStream).attr("target","_blank");
             // AJAX request for movie credits
             $.ajax({
@@ -85,6 +88,15 @@ function search(event) {
                 var author = response.crew.find(function(item) {
                     return item.job === "Author"
                 });
+
+                var book = response.crew.find(function(item) {
+                    return item.job === "Book"
+                });
+
+                var theater = response.crew.find(function(item) {
+                    return item.job === "Theatre Play"
+                });
+
                 $("#movieDir").text("Director: " + director.name);
                 
                 // Repeating element 
@@ -102,7 +114,7 @@ function search(event) {
                 var sw = writers.join(', ');
                 $("#movieScreen").text("Screenplay: " + sw);
                 // If movie is not based on a book, show "book not found"
-                if (novel === undefined && author === undefined) {
+                if (novel === undefined && author === undefined && book === undefined && theater === undefined) {
                     $("#bookcontent").hide();
                     $("#searching").hide();
                     $("#sorrybook").show();
@@ -141,6 +153,7 @@ function search(event) {
             method: 'GET'
         }).done(function(response) {
             console.log(response);
+            $('#bookreviews').empty();
             $('#bookreviews').append(response.reviews_widget);
             var bookPage = ($("#gr_header a").attr("href"));
             console.log(bookPage);
@@ -160,7 +173,7 @@ function search(event) {
                     var $publication_year = $xml.find("publication_year");
                     var $publication_month =$xml.find("publication_month");
                     var $publication_day =$xml.find("publication_day");
-                    var publication_date =$publication_month.html()+"-"+$publication_day.html()+"-"+$publication_year.html();
+                    var publication_date =$publication_year.html()+"-"+$publication_month.html()+"-"+$publication_day.html();
                     var amazon= "https://www.amazon.com/s/ref=nb_sb_ss_c_1_5?url=search-alias%3Dstripbooks&field-keywords="+movie;
                     var bookSynopsis_data = $xml.find("description");
                     var bookSynopsis_cut = bookSynopsis_data.html();
@@ -171,8 +184,9 @@ function search(event) {
                     $("#book-rating").text($rating.html());
                     $("#bookPoster").attr("src", $bookPosterLink);
                     $('#publish_date').text("Publication Date: "+publication_date);
-                    $('#amazon').parent().attr("href",amazon).attr("target","_blank")
-                    $('#goodreads').parent().attr("href",bookPage).attr("target","_blank")
+                    $('#amazon').parent().attr("href",amazon).attr("target","_blank");
+                    $('#goodreads').empty();
+                    $('#goodreads').parent().attr("href",bookPage).attr("target","_blank");
                     $("#searching").hide();
                     $("#bookcontent").show();
                     
