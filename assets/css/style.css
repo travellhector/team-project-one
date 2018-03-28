@@ -85,9 +85,9 @@ header, .header{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 25%;
+    margin: 0 auto;
     top: 34%;
-    width: 50%;
+    width: 540px;
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
 }
@@ -99,7 +99,7 @@ header, .header{
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid rgb(190, 190, 190);
-    width: 80%; /* Could be more or less, depending on screen size */
+    width:500px; /* Could be more or less, depending on screen size */
 }
 
 #movie {
@@ -128,6 +128,7 @@ header, .header{
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
+    border-radius: 10px 10px 0 0;
 }
 
 .poster-b, .poster-m, #sec2-b, #sec2-m{
@@ -152,6 +153,10 @@ header, .header{
     width: 250px;
 }
 
+#sorrybook, #sorrymovie, #searching{
+    width: 350px;
+    margin: 25px auto;  
+}
 
 @media screen and (max-width: 540px) {
 
@@ -180,10 +185,7 @@ header, .header{
     }
 
     header {
-        width: 100%;
-        background: black;
-        height: 100px;
-        padding: 10px 0;
+       
     }
     
 
@@ -215,10 +217,9 @@ header, .header{
 
     }
 
-    #search{
-        float: none;
-        padding: 0;
-        margin: 5px auto 0;
+    #search, #title{
+        margin: 0 auto;
+     
     }
 
 

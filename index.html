@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>
-            BOOK || MOVIE
+            Book || Movie Search Engine
         </title>
         
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -28,8 +28,8 @@
         <!-- Search Field Input and Button  -->
             <div class="container header clearfix">
                 <div class="row">
-                    <div class="col-3">
-                        <h1>BOOK || MOVIE</h1>
+                    <!-- <div class="col-3">
+                        <h1>WOZU</h1>
                     </div>
                     <div class="col-5" id="search">
                         <form role="form" class="form-inline " id="search-form" data-validate="parsley">
@@ -38,7 +38,24 @@
                             </div>
                             <input id="search-btn" type="submit" class="btn btn-light mb-2" value="Search">
                         </form>
-                    </div>
+                    </div> -->
+                    <ul class="nav justify-content-end col-lg-12">
+                        <li class="nav-item mr-auto" id="title">
+                            <a class="nav-link disabled" href="#"><h1>Book || Movie</h1></a>
+                            
+                        </li>
+                        <li class="nav-item mt-3" id="search">
+                            <!-- <a class="nav-link active" href="index.html">Home</a> -->
+                            <form role="form" class="form-inline " id="search-form" data-validate="parsley">
+                                <div class="form-group">
+                                    <input type="text" class="form-control mr-2" id="search-input" placeholder="enter a movie or book title" data-parsley-required>
+                                </div>
+                                <input id="search-btn" type="submit" class="btn btn-light" value="Search">
+                            </form>
+                        </li>
+                    
+                    </ul>
+
                     
                 </div>
             </div>
