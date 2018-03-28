@@ -92,6 +92,17 @@ header, .header{
     overflow: auto; /* Enable scroll if needed */
 }
 
+.modal-b {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    margin: 0 auto;
+    top: 5%;
+    width: 620px;
+    /* height: 100%; */
+    overflow: auto;
+}
+
 /* Modal Content/Box */
 .modal-content {
     color: white;
@@ -100,6 +111,15 @@ header, .header{
     padding: 20px;
     border: 1px solid rgb(190, 190, 190);
     width:500px; /* Could be more or less, depending on screen size */
+}
+
+.modal-content-b {
+    color: white;
+    background-color: black;
+    /* margin: 15% auto; */
+    padding: 20px;
+    border: 1px solid rgb(190, 190, 190);
+    width: 610px;
 }
 
 #movie {
