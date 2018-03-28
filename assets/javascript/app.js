@@ -59,11 +59,13 @@ function search(event) {
             var movieID = (response.results[0].id);
             // Url for credits search
             var creditsURL = "https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=1fc17c4180643016e173ba07928a30f2";
+            var amazonMovieBuy = "https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Dmovies-tv&field-keywords="+movie;
             // Url for streaming site
             var movieStream = "https://www.fan.tv/movies/"+movieID;
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w300_and_h450_bestv2"+poster);
             $("#synopsis").text(response.results[0].overview);
             $("#movieRelease").text("Release Date: " + response.results[0].release_date);
+            $('#amazonMovie').parent().attr("href",amazonMovieBuy).attr("target","_blank");
             $('#fanTV').parent().attr("href",movieStream).attr("target","_blank");
             // AJAX request for movie credits
             $.ajax({
@@ -91,10 +93,6 @@ function search(event) {
                     return item.job === "Book"
                 });
 
-                var story = response.crew.find(function(item) {
-                    return item.job === "Original Story"
-                });
-
                 var theater = response.crew.find(function(item) {
                     return item.job === "Theatre Play"
                 });
@@ -116,7 +114,7 @@ function search(event) {
                 var sw = writers.join(', ');
                 $("#movieScreen").text("Screenplay: " + sw);
                 // If movie is not based on a book, show "book not found"
-                if (novel === undefined && author === undefined && book === undefined && story == undefined && theater === undefined) {
+                if (novel === undefined && author === undefined && book === undefined && theater === undefined) {
                     $("#bookcontent").hide();
                     $("#searching").hide();
                     $("#sorrybook").show();
